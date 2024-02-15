@@ -1,2 +1,2 @@
-# time2draw
-Time2Draw
+# paint-2.0
+paint-2.0
