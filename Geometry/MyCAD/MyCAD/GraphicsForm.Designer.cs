@@ -45,6 +45,7 @@
             drawing.TabIndex = 0;
             drawing.TabStop = false;
             drawing.Click += drawing_Click;
+            drawing.Paint += drawing_Paint;
             drawing.MouseDown += drawing_MouseDown;
             drawing.MouseMove += drawing_MouseMove;
             // 
@@ -53,7 +54,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(26, 593);
             label1.Name = "label1";
-            label1.Size = new Size(49, 19);
+            label1.Size = new Size(61, 24);
             label1.TabIndex = 1;
             label1.Text = "label1";
             // 
@@ -62,7 +63,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(26, 628);
             label2.Name = "label2";
-            label2.Size = new Size(49, 19);
+            label2.Size = new Size(61, 24);
             label2.TabIndex = 2;
             label2.Text = "label2";
             // 
@@ -71,7 +72,7 @@
             pointBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pointBtn.Location = new Point(1135, 19);
             pointBtn.Name = "pointBtn";
-            pointBtn.Size = new Size(75, 23);
+            pointBtn.Size = new Size(80, 31);
             pointBtn.TabIndex = 3;
             pointBtn.Text = "Point";
             pointBtn.UseVisualStyleBackColor = true;
@@ -79,7 +80,7 @@
             // 
             // GraphicsForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 19F);
+            AutoScaleDimensions = new SizeF(10F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1316, 656);
             Controls.Add(pointBtn);
