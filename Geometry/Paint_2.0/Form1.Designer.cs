@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            pointBtn = new Button();
             btn_save = new Button();
             btn_clear = new Button();
             color_picker = new PictureBox();
@@ -55,19 +56,32 @@
             panel1.Controls.Add(btn_save);
             panel1.Controls.Add(btn_clear);
             panel1.Controls.Add(color_picker);
-            panel1.Controls.Add(btn_line);
-            panel1.Controls.Add(btn_rect);
-            panel1.Controls.Add(btn_ellipse);
-            panel1.Controls.Add(btn_eraser);
-            panel1.Controls.Add(btn_pencil);
-            panel1.Controls.Add(btn_fill);
             panel1.Controls.Add(pic_color);
             panel1.Controls.Add(panel3);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(912, 120);
+            panel1.Size = new Size(911, 120);
             panel1.TabIndex = 0;
+            // 
+            // pointBtn
+            // 
+            pointBtn.BackColor = Color.YellowGreen;
+            pointBtn.Cursor = Cursors.Hand;
+            pointBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 192, 0);
+            pointBtn.FlatAppearance.MouseOverBackColor = Color.Green;
+            pointBtn.FlatStyle = FlatStyle.Flat;
+            pointBtn.ForeColor = Color.White;
+            pointBtn.Image = Properties.Resources.circle;
+            pointBtn.ImageAlign = ContentAlignment.TopCenter;
+            pointBtn.Location = new Point(142, 63);
+            pointBtn.Name = "pointBtn";
+            pointBtn.Size = new Size(61, 28);
+            pointBtn.TabIndex = 12;
+            pointBtn.Text = "Point";
+            pointBtn.TextAlign = ContentAlignment.BottomCenter;
+            pointBtn.UseVisualStyleBackColor = false;
+            pointBtn.Click += pointBtn_Click;
             // 
             // btn_save
             // 
@@ -77,7 +91,7 @@
             btn_save.FlatStyle = FlatStyle.Flat;
             btn_save.ForeColor = Color.White;
             btn_save.ImageAlign = ContentAlignment.TopCenter;
-            btn_save.Location = new Point(820, 22);
+            btn_save.Location = new Point(820, 12);
             btn_save.Name = "btn_save";
             btn_save.Size = new Size(84, 32);
             btn_save.TabIndex = 11;
@@ -93,7 +107,7 @@
             btn_clear.FlatStyle = FlatStyle.Flat;
             btn_clear.ForeColor = Color.White;
             btn_clear.ImageAlign = ContentAlignment.TopCenter;
-            btn_clear.Location = new Point(820, 63);
+            btn_clear.Location = new Point(820, 50);
             btn_clear.Name = "btn_clear";
             btn_clear.Size = new Size(84, 32);
             btn_clear.TabIndex = 10;
@@ -123,9 +137,9 @@
             btn_line.ForeColor = Color.White;
             btn_line.Image = Properties.Resources.line;
             btn_line.ImageAlign = ContentAlignment.TopCenter;
-            btn_line.Location = new Point(733, 27);
+            btn_line.Location = new Point(415, 15);
             btn_line.Name = "btn_line";
-            btn_line.Size = new Size(72, 65);
+            btn_line.Size = new Size(44, 42);
             btn_line.TabIndex = 7;
             btn_line.Text = "Line";
             btn_line.TextAlign = ContentAlignment.BottomCenter;
@@ -142,9 +156,9 @@
             btn_rect.ForeColor = Color.White;
             btn_rect.Image = Properties.Resources.rectangle;
             btn_rect.ImageAlign = ContentAlignment.TopCenter;
-            btn_rect.Location = new Point(655, 27);
+            btn_rect.Location = new Point(355, 15);
             btn_rect.Name = "btn_rect";
-            btn_rect.Size = new Size(72, 65);
+            btn_rect.Size = new Size(54, 42);
             btn_rect.TabIndex = 6;
             btn_rect.Text = "Rectangle";
             btn_rect.TextAlign = ContentAlignment.BottomCenter;
@@ -161,9 +175,9 @@
             btn_ellipse.ForeColor = Color.White;
             btn_ellipse.Image = Properties.Resources.circle;
             btn_ellipse.ImageAlign = ContentAlignment.TopCenter;
-            btn_ellipse.Location = new Point(577, 27);
+            btn_ellipse.Location = new Point(296, 15);
             btn_ellipse.Name = "btn_ellipse";
-            btn_ellipse.Size = new Size(72, 65);
+            btn_ellipse.Size = new Size(53, 42);
             btn_ellipse.TabIndex = 5;
             btn_ellipse.Text = "Ellipse";
             btn_ellipse.TextAlign = ContentAlignment.BottomCenter;
@@ -180,9 +194,9 @@
             btn_eraser.ForeColor = Color.White;
             btn_eraser.Image = Properties.Resources.eraser;
             btn_eraser.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_eraser.Location = new Point(499, 27);
+            btn_eraser.Location = new Point(218, 15);
             btn_eraser.Name = "btn_eraser";
-            btn_eraser.Size = new Size(72, 65);
+            btn_eraser.Size = new Size(72, 42);
             btn_eraser.TabIndex = 4;
             btn_eraser.Text = "Eraser";
             btn_eraser.TextAlign = ContentAlignment.BottomCenter;
@@ -199,9 +213,9 @@
             btn_pencil.ForeColor = Color.White;
             btn_pencil.Image = Properties.Resources.pencil;
             btn_pencil.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_pencil.Location = new Point(421, 27);
+            btn_pencil.Location = new Point(142, 15);
             btn_pencil.Name = "btn_pencil";
-            btn_pencil.Size = new Size(72, 65);
+            btn_pencil.Size = new Size(70, 42);
             btn_pencil.TabIndex = 3;
             btn_pencil.Text = "Pencil";
             btn_pencil.TextAlign = ContentAlignment.BottomCenter;
@@ -218,9 +232,9 @@
             btn_fill.ForeColor = Color.White;
             btn_fill.Image = Properties.Resources.bucket;
             btn_fill.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_fill.Location = new Point(343, 27);
+            btn_fill.Location = new Point(77, 15);
             btn_fill.Name = "btn_fill";
-            btn_fill.Size = new Size(72, 65);
+            btn_fill.Size = new Size(59, 42);
             btn_fill.TabIndex = 2;
             btn_fill.Text = "Fill";
             btn_fill.TextAlign = ContentAlignment.BottomCenter;
@@ -239,7 +253,14 @@
             // panel3
             // 
             panel3.BackColor = Color.Green;
+            panel3.Controls.Add(pointBtn);
             panel3.Controls.Add(btn_color);
+            panel3.Controls.Add(btn_fill);
+            panel3.Controls.Add(btn_pencil);
+            panel3.Controls.Add(btn_eraser);
+            panel3.Controls.Add(btn_line);
+            panel3.Controls.Add(btn_ellipse);
+            panel3.Controls.Add(btn_rect);
             panel3.Location = new Point(255, 12);
             panel3.Name = "panel3";
             panel3.Size = new Size(559, 94);
@@ -257,7 +278,7 @@
             btn_color.ImageAlign = ContentAlignment.MiddleLeft;
             btn_color.Location = new Point(10, 15);
             btn_color.Name = "btn_color";
-            btn_color.Size = new Size(72, 65);
+            btn_color.Size = new Size(61, 42);
             btn_color.TabIndex = 1;
             btn_color.Text = "Color";
             btn_color.TextAlign = ContentAlignment.BottomCenter;
@@ -270,7 +291,7 @@
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 492);
             panel2.Name = "panel2";
-            panel2.Size = new Size(912, 19);
+            panel2.Size = new Size(911, 19);
             panel2.TabIndex = 1;
             // 
             // pic
@@ -279,7 +300,7 @@
             pic.Dock = DockStyle.Fill;
             pic.Location = new Point(0, 0);
             pic.Name = "pic";
-            pic.Size = new Size(912, 511);
+            pic.Size = new Size(911, 511);
             pic.TabIndex = 0;
             pic.TabStop = false;
             pic.Paint += pic_Paint;
@@ -292,7 +313,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(912, 511);
+            ClientSize = new Size(911, 511);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(pic);
@@ -324,5 +345,6 @@
         private PictureBox color_picker;
         private Button btn_clear;
         private Button btn_save;
+        private Button pointBtn;
     }
 }

@@ -1,4 +1,6 @@
+using System.Drawing.Configuration;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace Paint_2._0
 {
@@ -14,6 +16,10 @@ namespace Paint_2._0
             g.Clear(Color.White);
             pic.Image = bm;
         }
+        private List<Entities.Point> points = new List<Entities.Point>();
+        private Vector3 currentPosition;
+        private int DrawIndex = -1;
+        private bool active_drawing = false;
 
         Bitmap bm;
         Graphics g;
@@ -209,8 +215,60 @@ namespace Paint_2._0
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 Bitmap btm = bm.Clone(new Rectangle(0, 0, pic.Width, pic.Height), bm.PixelFormat);
-                btm.Save(sfd.FileName,ImageFormat.Jpeg);
+                btm.Save(sfd.FileName, ImageFormat.Jpeg);
             }
         }
+
+        private void pointBtn_Click(object sender, EventArgs e)
+        {
+            DrawIndex = 0;
+            active_drawing = true;
+            pic.Cursor = Cursors.Cross;
+        }
+        // Get screen dpi
+        private float DPI
+        {
+            get
+            {
+                using (var g = CreateGraphics())
+                    return g.DpiX;
+            }
+        }
+
+        private float Pixel_to_Mn(float pixel) 
+        {
+            return pixel * 25.4f / DPI;
+        }
+        private void drawing_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (active_drawing)
+                {
+                    switch (DrawIndex)
+                    {
+                        case 0: // point
+                            points.Add(new Entities.Point(currentPosition));
+                            break;
+
+                    }
+                    pic.Refresh();
+                }
+            }
+        }
+        private void drawing_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SetParameters(Pixel_to_Mn(pic.Height));
+            if (points.Count > 0)
+            {
+                foreach (Entities.Point p in points)
+                {
+                    e.Graphics.DrawPoint(new Pen(Color.Red, 0), p);
+                }
+                    
+
+            }
+        }
+
     }
 }
