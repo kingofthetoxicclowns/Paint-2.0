@@ -52,9 +52,20 @@ namespace MyCAD
 
                     }
                     drawing.Refresh();
+                    UpdateDrawing();
                 }
             }
         }
+
+        private void UpdateDrawing()
+        {
+            // Создаем новый объект PaintEventArgs
+            PaintEventArgs e = new PaintEventArgs(this.CreateGraphics(), this.DisplayRectangle);
+
+            // Вызываем событие Paint напрямую
+            drawing_Paint(this, e);
+        }
+
         private void drawing_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SetParameters(Pixel_to_Mn(drawing.Height));
