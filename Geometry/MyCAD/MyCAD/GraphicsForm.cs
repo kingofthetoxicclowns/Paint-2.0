@@ -1,6 +1,6 @@
 using System.Drawing;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Services;
+//using System.Runtime.Remoting.Services;
 namespace MyCAD
 {
     public partial class GraphicsForm : Form
@@ -15,7 +15,7 @@ namespace MyCAD
         private Vector3 firstPoint; 
         private int DrawIndex = -1;
         private bool active_drawing = false;
-        private int ClickNum = i;
+        private int ClickNum = 1;
 
         private void drawing_MouseMove(object sender, MouseEventArgs e)
         {
@@ -102,9 +102,9 @@ namespace MyCAD
             // Draw all lines
             if (lines.Count > 0)
             {
-                foreach(Entities.Line 1 in Lines)
+                foreach(Entities.Line l in lines)
                 {
-                    e.Graphics.DrawLine(pen, 1);
+                    e.Graphics.DrawLine(pen, l);
                 }
             }
         }

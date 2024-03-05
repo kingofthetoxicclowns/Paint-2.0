@@ -1,15 +1,13 @@
-﻿using Paint_2._0.Entities;
+﻿using MyCAD.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Paint_2._0.Entities
+namespace MyCAD.Entities
 {
-   
-
-    public class Line
+       public class Line
     {
         private Vector3 startPoint;
         private Vector3 endPoint;
