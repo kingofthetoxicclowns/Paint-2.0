@@ -20,8 +20,9 @@ namespace MyCAD
         private void drawing_MouseMove(object sender, MouseEventArgs e)
         {
             currentPosition = PointToCartesian(e.Location);
-            label1.Text = string.Format("{0}, {1}", e.Location.X, e.Location.Y);
-            label2.Text = string.Format("{0,0:F3}, {1,0:F3}", currentPosition.X, currentPosition.Y);
+          //  label1.Text = string.Format("{0}, {1}", e.Location.X, e.Location.Y);
+            label1.Text = string.Format("{0,0:F3}, {1,0:F3}", currentPosition.X, currentPosition.Y);
+            drawing.Refresh();
         }
         // Get screen dpi
         private float DPI
@@ -111,7 +112,7 @@ namespace MyCAD
             // Draw line extended
             switch (DrawIndex)
             {
-                case 2:|
+                case 1:
                 if (ClickNum == 2)
                     {
                         Entities.Line line = new Entities.Line(firstPoint, currentPosition);
