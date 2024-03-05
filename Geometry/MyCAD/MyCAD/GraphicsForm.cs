@@ -9,6 +9,7 @@ namespace MyCAD
             InitializeComponent();
         }
         private List<Entities.Point> points = new List<Entities.Point>();
+        private List<Entities.Line> lines = new List<Entities.Line>();
         private Vector3 currentPosition;
         private int DrawIndex = -1;
         private bool active_drawing = false;
