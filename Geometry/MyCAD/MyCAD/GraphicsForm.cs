@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Services;
 namespace MyCAD
 {
     public partial class GraphicsForm : Form
@@ -11,8 +12,10 @@ namespace MyCAD
         private List<Entities.Point> points = new List<Entities.Point>();
         private List<Entities.Line> lines = new List<Entities.Line>();
         private Vector3 currentPosition;
+        private Vector3 firstPoint; 
         private int DrawIndex = -1;
         private bool active_drawing = false;
+        private int ClickNum = i;
 
         private void drawing_MouseMove(object sender, MouseEventArgs e)
         {
@@ -50,6 +53,23 @@ namespace MyCAD
                         case 0: // point
                             points.Add(new Entities.Point(currentPosition));
                             break;
+                        case 1: // line
+                            switch (ClickNum)
+                            {
+                                case 1:
+                                    firstPoint = currentPosition;
+                                    points.Add(new Entities.Point(currentPosition));
+                                    ClickNum++;
+                                    break;
+                                case 2:
+                                    lines.Add(new Entities.Line(firstPoint, currentPosition));
+                                    points.Add(new Entities.Point(currentPosition));
+                                    firstPoint = currentPosition;
+                                    ClickNum = 1;
+                                    break;
+
+                            }
+                            break;
 
                     }
                     drawing.Refresh();
@@ -70,11 +90,21 @@ namespace MyCAD
         private void drawing_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SetParameters(Pixel_to_Mn(drawing.Height));
+            Pen pen = new Pen(Color.Blue, 0.1f);
+            //Draw all points
             if (points.Count > 0)
             {
                 foreach (Entities.Point p in points)
                 {
-                    e.Graphics.DrawPoint(new Pen(Color.Red, 1), p);////////был 0 в видосе 1 в комментах
+                    e.Graphics.DrawPoint(new Pen(Color.Red, 0.1f), p);////////был 0 в видосе 1 в комментах
+                }
+            }
+            // Draw all lines
+            if (lines.Count > 0)
+            {
+                foreach(Entities.Line 1 in Lines)
+                {
+                    e.Graphics.DrawLine(pen, 1);
                 }
             }
         }

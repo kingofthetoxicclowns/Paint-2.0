@@ -32,7 +32,7 @@ namespace MyCAD
         {
             g.SetTransform();
             g.DrawLine(pen, line.StartPoint.ToPoint F, line.EndPoint.ToPointF);
-            g.ResetTransform();|
+            g.ResetTransform();
         }
     }
 }
