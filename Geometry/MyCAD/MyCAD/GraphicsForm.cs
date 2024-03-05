@@ -12,7 +12,7 @@ namespace MyCAD
         private List<Entities.Point> points = new List<Entities.Point>();
         private List<Entities.Line> lines = new List<Entities.Line>();
         private Vector3 currentPosition;
-        private Vector3 firstPoint; 
+        private Vector3 firstPoint;
         private int DrawIndex = -1;
         private bool active_drawing = false;
         private int ClickNum = 1;
@@ -64,7 +64,7 @@ namespace MyCAD
                                     lines.Add(new Entities.Line(firstPoint, currentPosition));
                                     points.Add(new Entities.Point(currentPosition));
                                     firstPoint = currentPosition;
-                                    ClickNum = 1;
+                                    //ClickNum = 1;
                                     break;
 
                             }
@@ -101,7 +101,7 @@ namespace MyCAD
             // Draw all lines
             if (lines.Count > 0)
             {
-                foreach(Entities.Line l in lines)
+                foreach (Entities.Line l in lines)
                 {
                     e.Graphics.DrawLine(pen, l);
                 }
@@ -114,10 +114,17 @@ namespace MyCAD
             active_drawing = true;
             drawing.Cursor = Cursors.Cross;
         }
-
+        private void lineBtn_Click(object sender, EventArgs e)
+        {
+            DrawIndex = 1;
+            active_drawing = true;
+            drawing.Cursor = Cursors.Cross;
+        }
         private void drawing_Click(object sender, EventArgs e)
         {
 
         }
+
+       
     }
 }

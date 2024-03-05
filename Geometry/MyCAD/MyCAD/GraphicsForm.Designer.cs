@@ -32,6 +32,7 @@
             label1 = new Label();
             label2 = new Label();
             pointBtn = new Button();
+            lineBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)drawing).BeginInit();
             SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(26, 593);
             label1.Name = "label1";
-            label1.Size = new Size(61, 24);
+            label1.Size = new Size(49, 19);
             label1.TabIndex = 1;
             label1.Text = "label1";
             // 
@@ -63,7 +64,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(26, 628);
             label2.Name = "label2";
-            label2.Size = new Size(61, 24);
+            label2.Size = new Size(49, 19);
             label2.TabIndex = 2;
             label2.Text = "label2";
             // 
@@ -78,11 +79,23 @@
             pointBtn.UseVisualStyleBackColor = true;
             pointBtn.Click += pointBtn_Click;
             // 
+            // lineBtn
+            // 
+            lineBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lineBtn.Location = new Point(1135, 56);
+            lineBtn.Name = "lineBtn";
+            lineBtn.Size = new Size(80, 31);
+            lineBtn.TabIndex = 4;
+            lineBtn.Text = "Line";
+            lineBtn.UseVisualStyleBackColor = true;
+            lineBtn.Click += lineBtn_Click;
+            // 
             // GraphicsForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 24F);
+            AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1316, 656);
+            Controls.Add(lineBtn);
             Controls.Add(pointBtn);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -102,5 +115,6 @@
         private Label label1;
         private Label label2;
         private Button pointBtn;
+        private Button lineBtn;
     }
 }
