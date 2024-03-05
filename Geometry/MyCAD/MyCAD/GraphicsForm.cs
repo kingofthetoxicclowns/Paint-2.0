@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Collections.Generic;
+using System.DirectoryServices.ActiveDirectory;
 //using System.Runtime.Remoting.Services;
 namespace MyCAD
 {
@@ -90,6 +91,7 @@ namespace MyCAD
         {
             e.Graphics.SetParameters(Pixel_to_Mn(drawing.Height));
             Pen pen = new Pen(Color.Blue, 0.1f);
+            Pen extpen = new Pen(Color.Gray, 0.1f);
             //Draw all points
             if (points.Count > 0)
             {
@@ -105,6 +107,17 @@ namespace MyCAD
                 {
                     e.Graphics.DrawLine(pen, l);
                 }
+            }
+            // Draw line extended
+            switch (DrawIndex)
+            {
+                case 2:|
+                if (ClickNum == 2)
+                    {
+                        Entities.Line line = new Entities.Line(firstPoint, currentPosition);
+                        e.Graphics.DrawLine(extpen, line);
+                    }   
+                    break;
             }
         }
 
