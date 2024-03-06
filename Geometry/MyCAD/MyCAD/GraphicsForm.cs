@@ -21,7 +21,7 @@ namespace MyCAD
         private void drawing_MouseMove(object sender, MouseEventArgs e)
         {
             currentPosition = PointToCartesian(e.Location);
-          //  label1.Text = string.Format("{0}, {1}", e.Location.X, e.Location.Y);
+            //  label1.Text = string.Format("{0}, {1}", e.Location.X, e.Location.Y);
             label1.Text = string.Format("{0,0:F3}, {1,0:F3}", currentPosition.X, currentPosition.Y);
             drawing.Refresh();
         }
@@ -136,11 +136,11 @@ namespace MyCAD
             switch (DrawIndex)
             {
                 case 1:
-                if (ClickNum == 2)
+                    if (ClickNum == 2)
                     {
                         Entities.Line line = new Entities.Line(firstPoint, currentPosition);
                         e.Graphics.DrawLine(extpen, line);
-                    }   
+                    }
                     break;
                 case 2:
                     if (ClickNum == 2)
@@ -167,11 +167,17 @@ namespace MyCAD
             active_drawing = true;
             drawing.Cursor = Cursors.Cross;
         }
+       
+
+        private void circleBtn_Click(object sender, EventArgs e)
+        {
+            DrawIndex = 2;
+            active_drawing = true;
+            drawing.Cursor = Cursors.Cross;
+        }
         private void drawing_Click(object sender, EventArgs e)
         {
 
         }
-
-       
     }
 }

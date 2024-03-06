@@ -30,9 +30,9 @@
         {
             drawing = new PictureBox();
             label1 = new Label();
-            label2 = new Label();
             pointBtn = new Button();
             lineBtn = new Button();
+            circleBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)drawing).BeginInit();
             SuspendLayout();
             // 
@@ -59,15 +59,6 @@
             label1.TabIndex = 1;
             label1.Text = "label1";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(26, 628);
-            label2.Name = "label2";
-            label2.Size = new Size(49, 19);
-            label2.TabIndex = 2;
-            label2.Text = "label2";
-            // 
             // pointBtn
             // 
             pointBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -90,14 +81,25 @@
             lineBtn.UseVisualStyleBackColor = true;
             lineBtn.Click += lineBtn_Click;
             // 
+            // circleBtn
+            // 
+            circleBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            circleBtn.Location = new Point(1135, 93);
+            circleBtn.Name = "circleBtn";
+            circleBtn.Size = new Size(80, 31);
+            circleBtn.TabIndex = 5;
+            circleBtn.Text = "Circle";
+            circleBtn.UseVisualStyleBackColor = true;
+            circleBtn.Click += circleBtn_Click;
+            // 
             // GraphicsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1316, 656);
+            Controls.Add(circleBtn);
             Controls.Add(lineBtn);
             Controls.Add(pointBtn);
-            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(drawing);
             Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -113,8 +115,8 @@
 
         private PictureBox drawing;
         private Label label1;
-        private Label label2;
         private Button pointBtn;
         private Button lineBtn;
+        private Button circleBtn;
     }
 }
