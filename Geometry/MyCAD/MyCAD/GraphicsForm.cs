@@ -12,6 +12,7 @@ namespace MyCAD
         }
         private List<Entities.Point> points = new List<Entities.Point>();
         private List<Entities.Line> lines = new List<Entities.Line>();
+        private List<Entities.Circle> circles = new List<Entities.Circle>();
         private Vector3 currentPosition;
         private Vector3 firstPoint;
         private int DrawIndex = -1;
@@ -71,6 +72,20 @@ namespace MyCAD
 
                             }
                             break;
+                        case 2: // circle
+                            switch (ClickNum)
+                            {
+                                case 1:
+                                    firstPoint = currentPosition;
+                                    ClickNum++;
+                                    break;
+                                case 2:
+                                    double r = firstPoint.DistanceFrom(currentPosition);
+                                    circles.Add(new Entities.Circle(firstPoint, r));
+                                    ClickNum = 1;
+                                    break;
+                            }
+                            break;
 
                     }
                     drawing.Refresh();
@@ -109,6 +124,14 @@ namespace MyCAD
                     e.Graphics.DrawLine(pen, l);
                 }
             }
+            // Draw all circle
+            if (circles.Count > 0)
+            {
+                foreach (Entities.Circle c in circles)
+                {
+                    e.Graphics.DrawCircle(pen, c);
+                }
+            }
             // Draw line extended
             switch (DrawIndex)
             {
@@ -118,6 +141,16 @@ namespace MyCAD
                         Entities.Line line = new Entities.Line(firstPoint, currentPosition);
                         e.Graphics.DrawLine(extpen, line);
                     }   
+                    break;
+                case 2:
+                    if (ClickNum == 2)
+                    {
+                        Entities.Line line = new Entities.Line(firstPoint, currentPosition);
+                        e.Graphics.DrawLine(extpen, line);
+                        double r = firstPoint.DistanceFrom(currentPosition);
+                        Entities.Circle circle = new Entities.Circle(firstPoint, r);
+                        e.Graphics.DrawCircle(extpen, circle);
+                    }
                     break;
             }
         }

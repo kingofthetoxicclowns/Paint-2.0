@@ -50,6 +50,13 @@ namespace MyCAD
         {
             get { return new Vector3(0.0, 0.0, 0.0); }
         }
+        public double DistanceFrom(Vector3 v)
+        {
+            double dx = v.x - X;
+            double dy = v.Y - Y;
+            double dz = v.Z - Z;
+            return Math.Sqrt(dx * dx + dy * dy + dz * dz);
+        }
 
     }
 }
