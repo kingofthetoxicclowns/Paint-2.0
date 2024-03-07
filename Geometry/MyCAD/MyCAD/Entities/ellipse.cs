@@ -20,7 +20,10 @@ namespace MyCAD.Entities
             this.center = center;
             this.MajorAxis = majoraxis;
             this.MinorAxis = minoraxis;
-            
+            this.startAngle = 0.0;
+            this.endAngle = 360.0;
+            this.Rotation = 0.0;
+            this.Thickness = 0.0;
         }
 
         public double Thickness

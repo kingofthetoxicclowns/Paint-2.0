@@ -13,8 +13,10 @@ namespace MyCAD
         private List<Entities.Point> points = new List<Entities.Point>();
         private List<Entities.Line> lines = new List<Entities.Line>();
         private List<Entities.Circle> circles = new List<Entities.Circle>();
+        private List<Entities.Ellipse> ellipses = new List<Entities.Ellipse>();
         private Vector3 currentPosition;
         private Vector3 firstPoint;
+        private Vector3 secondPoint;
         private int DrawIndex = -1;
         private bool active_drawing = false;
         private int ClickNum = 1;
@@ -83,6 +85,26 @@ namespace MyCAD
                                     double r = firstPoint.DistanceFrom(currentPosition);
                                     circles.Add(new Entities.Circle(firstPoint, r));
                                     ClickNum = 1;
+                                    break;
+                            }
+                            break;
+                        case 3: // Ellipse
+                            switch (ClickNum)
+                            {
+                                case 1:
+                                    firstPoint = currentPosition;
+                                    ClickNum++;
+                                    break;
+                                case 2:
+                                    secondPoint = currentPosition;
+                                    ClickNum++;
+                                    break;
+                                case 3:
+                                    double major = firstPoint.DistanceFrom(secondPoint);
+                                    double minor = firstPoint.DistanceFrom(currentPosition);
+                                    Entities.Ellipse ellipse = new Entities.Ellipse(firstPoint, major, minor);
+                                    ellipse.Rotation = Methods.Method.LineAngle(firstPoint, secondPoint);
+                                    ellipses.Add(ellipse);
                                     break;
                             }
                             break;
