@@ -100,11 +100,15 @@ namespace MyCAD
                                     ClickNum++;
                                     break;
                                 case 3:
-                                    double major = firstPoint.DistanceFrom(secondPoint);
-                                    double minor = firstPoint.DistanceFrom(currentPosition);
-                                    Entities.Ellipse ellipse = new Entities.Ellipse(firstPoint, major, minor);
-                                    ellipse.Rotation = Methods.Method.LineAngle(firstPoint, secondPoint);
+                                    // double major = firstPoint.DistanceFrom(secondPoint);
+                                    // double minor = firstPoint.DistanceFrom(currentPosition);
+                                    // Entities.Ellipse ellipse = new Entities.Ellipse(firstPoint, major, minor);
+                                    // ellipse.Rotation = Methods.Method.LineAngle(firstPoint, secondPoint);
+                                    Entities.Ellipse ellipse = Methods.Method.GetEllipse(firstPoint, secondPoint, currentPosition);
                                     ellipses.Add(ellipse);
+                                    ClickNum = 1;
+                                    active_drawing = false;
+                                    drawing.Cursor = Cursors.Default;
                                     break;
                             }
                             break;
@@ -154,6 +158,14 @@ namespace MyCAD
                     e.Graphics.DrawCircle(pen, c);
                 }
             }
+            // Draw all ellipses
+            if (ellipses.Count > 0)
+            {
+                foreach (Entities.Ellipse elp in ellipses)
+                {
+                    e.Graphics.DrawEllipse(pen, elp);
+                }
+            }
             // Draw line extended
             switch (DrawIndex)
             {
@@ -174,6 +186,22 @@ namespace MyCAD
                         e.Graphics.DrawCircle(extpen, circle);
                     }
                     break;
+                case 3:
+                    switch (ClickNum)
+                    {
+                        case 2:
+                            Entities.Line line = new Entities.Line(firstPoint, currentPosition);
+    
+                            e.Graphics.DrawLine(extpen, line);
+                            break;
+                        case 3:
+                            Entities.Line line1 = new Entities.Line(firstPoint, currentPosition);
+                            e.Graphics.DrawLine(extpen, line1);
+                            Entities.Ellipse elp = Methods.Method.GetEllipse(firstPoint, secondPoint, currentPosition);
+                            e.Graphics.DrawEllipse(extpen, elp);
+                            break;
+                    }
+                    break;
             }
         }
 
@@ -189,11 +217,19 @@ namespace MyCAD
             active_drawing = true;
             drawing.Cursor = Cursors.Cross;
         }
-       
+
 
         private void circleBtn_Click(object sender, EventArgs e)
         {
             DrawIndex = 2;
+            active_drawing = true;
+            drawing.Cursor = Cursors.Cross;
+        }
+       
+
+        private void ellipseBtn_Click(object sender, EventArgs e)
+        {
+            DrawIndex = 3;
             active_drawing = true;
             drawing.Cursor = Cursors.Cross;
         }
