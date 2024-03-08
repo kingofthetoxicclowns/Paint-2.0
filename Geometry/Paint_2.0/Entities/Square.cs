@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Paint_2._0.Entities
 {
-    public class Line : IFigure
+    public class Square : IFigure
     {
         public List<PointF> Points { get; set; } = new();
         public Color StrokeColor { get; set; } = Color.Black;
@@ -31,12 +31,6 @@ namespace Paint_2._0.Entities
             Points.Add(new PointF(startPointF.X, startPointF.Y + vector.Y));
         }
 
-        public void Move(Vector2 vector)
-        {
-            Points.ForEach(p
-                => p = new PointF(p.X + vector.X, p.Y + vector.Y));
-        }
-
         public void StrokeColorChange(Color color)
         {
             StrokeColor = color;
@@ -45,6 +39,11 @@ namespace Paint_2._0.Entities
         public void Fill(Color color)
         {
             FillColor = color;
+        }
+        public void Move(Vector2 vector)
+        {
+            Points.ForEach(p
+                => p = new PointF(p.X + vector.X, p.Y + vector.Y));
         }
 
         public void StrokeThicknessChange(int thickness)

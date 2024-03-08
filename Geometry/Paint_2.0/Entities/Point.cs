@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Paint_2._0.Entities
+namespace Paint_2._0.Entities 
 {
-    public class Point
+    public class Point //НЕ ФИГУРА! класс изначальной программы. использовался для чего-то, поэтому оставлен
     {
         private Vector3 position;
         private double thickness;
@@ -30,7 +30,7 @@ namespace Paint_2._0.Entities
         public Vector3 Position
         {
             get { return position; }
-            set { position = value; }  
+            set { position = value; }
         }
     }
 }
