@@ -205,12 +205,13 @@ namespace Paint_2._0
         private void btn_save_Click(object sender, EventArgs e)
         {
             var sfd = new SaveFileDialog();
-            sfd.Filter = "Image(*.jpg)|*.jpg|(*.*|*.*";
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                Bitmap btm = bm.Clone(new Rectangle(0, 0, pic.Width, pic.Height), bm.PixelFormat);
-                btm.Save(sfd.FileName,ImageFormat.Jpeg);
-            }
+            sfd.Filter = IO.IO.MakeFileFilter();
+            sfd.FileName = "Paint2.0-Image";
+
+            if (sfd.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            IO.IO.Save(bm, sfd.FileName, pic.Width, pic.Height);
         }
     }
 }
