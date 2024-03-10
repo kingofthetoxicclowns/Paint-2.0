@@ -8,6 +8,7 @@ namespace Paint_2._0.Entities
 {
     public class Line : IFigure
     {
+        public bool IsCircle { get; set; } = false;
         public List<PointF> Points { get; set; } = new();
         public Color StrokeColor { get; set; } = Color.Black;
         public int StrokeThickness { get; set; } = 1;

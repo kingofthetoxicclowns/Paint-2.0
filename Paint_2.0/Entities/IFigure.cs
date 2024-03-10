@@ -9,6 +9,7 @@ namespace Paint_2._0.Entities
 {
     public interface IFigure
     {
+        public bool IsCircle { get; set; } //проверка на круг: 0 - не круг, 1 - круг
         public List<PointF> Points { get; set; } //точки для построения фигуры
 
         public Color StrokeColor { get; set; } //цвет обводки

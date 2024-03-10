@@ -9,6 +9,7 @@ namespace Paint_2._0.Entities
 {
     public class Circle : IFigure
     {
+        public bool IsCircle { get; set; } = true;
         public PointF Center { get; set; }
 
         public double Radius { get; set; }
