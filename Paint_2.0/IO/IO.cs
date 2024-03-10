@@ -1,12 +1,13 @@
 ﻿using System.Drawing.Imaging;
+using Svg;
 
 namespace Paint_2._0.IO
 {
     public static class IO
     {
 
-        public static List<string> fileFormats { get; set; } = new List<string>()
-            { "svg", "img", "jpg", "png" };
+        public static List<string> FileFormats { get; set; } =
+            ["svg", "img", "jpeg", "png"];
 
         /// <summary>
         /// Создаёт строку фильтра файлов по их расширению для экземпляра класса SaveFileDialog.
@@ -14,10 +15,19 @@ namespace Paint_2._0.IO
         public static string MakeFileFilter()
         {
             string filterString = "";
-            for (int i = 0; i < fileFormats.Count; i++)
-                filterString += fileFormats[i] + "|*." + fileFormats[i].ToLower() + "|";
+            for (int i = 0; i < FileFormats.Count; i++)
+                filterString += $"{FileFormats[i]}|*.{FileFormats[i].ToLower()}|";
             
-            return filterString.Substring(0, filterString.Length - 1);
+            return filterString[..^1];
+        }
+
+        // Получает информацию кодировщика заданного формата изображения.
+        private static ImageCodecInfo? GetEncoderInfo(String mimeType)
+        {
+            ImageCodecInfo[] encoders = ImageCodecInfo.GetImageEncoders();
+            ImageCodecInfo? encoder = Array.Find(encoders, encoder => encoder.MimeType == mimeType);
+
+            return encoder;
         }
 
         // Сохраняет накаляканное в файл.
@@ -36,9 +46,29 @@ namespace Paint_2._0.IO
         }
 
         // Из SVG-файла переводит в указанный растровый формат.
-        public static int SVGToBitmapFormat()
+        public static void SVGToBitmapFormat(string svgPath, string outputPath, string bitmapFormat)
         {
-            return 0;
+            Bitmap bitmap;
+            SvgDocument svgDoc;
+            ImageCodecInfo? myImageCodecInfo;
+            EncoderParameter myEncoderParameter;
+            EncoderParameters myEncoderParameters;
+            long ImageQuality;
+
+            svgDoc = SvgDocument.Open(svgPath);
+            bitmap = svgDoc.Draw();
+
+            myImageCodecInfo = GetEncoderInfo(mimeType: $"image/{bitmapFormat}");
+            if (myImageCodecInfo is null || !FileFormats.Contains(bitmapFormat))
+                throw new Exception("Указанный формат изображения не поддерживается.");
+
+            ImageQuality = 100L;
+
+            myEncoderParameters = new EncoderParameters(1);
+            myEncoderParameter = new EncoderParameter(Encoder.Quality, ImageQuality);
+            myEncoderParameters.Param[0] = myEncoderParameter;
+
+            bitmap.Save(outputPath, myImageCodecInfo, myEncoderParameters);
         }
 
         // Из SVG-файла формирует контейнер фигур.

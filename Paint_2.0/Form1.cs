@@ -204,9 +204,11 @@ namespace Paint_2._0
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = IO.IO.MakeFileFilter();
-            sfd.FileName = "Paint2.0-Image";
+            var sfd = new SaveFileDialog
+            {
+                Filter = IO.IO.MakeFileFilter(),
+                FileName = "Paint2.0-Image"
+            };
 
             if (sfd.ShowDialog() == DialogResult.Cancel)
                 return;
