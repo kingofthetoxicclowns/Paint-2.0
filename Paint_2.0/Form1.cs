@@ -87,9 +87,10 @@ public partial class Form1 : Form
     {
         if (drawing.IsDraw)
         {
-            IFigure? figure = drawing.End();
-            if (figure is not null)
-                figureContainer.Add(figure);
+            if (drawing.Figure is not null)
+                figureContainer.Add(drawing.Figure);
+
+            drawing.End();
         }
     }
 
@@ -123,9 +124,11 @@ public partial class Form1 : Form
         Graphics graphics = e.Graphics;
         if (drawing.IsDraw)
         {
+            IFigure? figure;
             if (drawing.Figure.Points.Count() == 0)
                 drawing.Draw(prevPoint);
-            drawing.Draw(point);
+                
+            figure = drawing.Draw(point);
         }
     }
 
