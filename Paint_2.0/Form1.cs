@@ -11,9 +11,30 @@ public partial class Form1 : Form
     Bitmap bitmap;
     Graphics graphics;
     Pen pen = new Pen(Color.Black, 1);
+
+    /// <summary>
+    /// Текущая точка.
+    /// </summary>
     private Point2 point;
+
+    /// <summary>
+    /// Предыдущая точка.
+    /// </summary>
     private Point2 prevPoint;
+
+    /// <summary>
+    /// Команда создания фигуры.
+    /// </summary>
     private Drawing drawing;
+
+    /// <summary>
+    /// Команда перемещения фигуры.
+    /// </summary>
+    private Moving moving;
+
+    /// <summary>
+    /// Контейнер с фигурами.
+    /// </summary>
     private FigureContainer figureContainer;
 
     public Form1()
@@ -29,6 +50,7 @@ public partial class Form1 : Form
         point = new(0, 0);
         prevPoint = new(0, 0);
         drawing = new();
+        moving = new();
         figureContainer = new();
     }
 
@@ -43,10 +65,21 @@ public partial class Form1 : Form
         if (drawing.Figure is not null)
             drawing.Draw(point);
         IFigure? figure = figureContainer.Select(new Point2(e.Location));
+        if (figure is not null)
+        {
+            moving.Start(figure);
+        }
+        if (moving.IsCommandStart)
+        {
+            moving.Stop();
+        }
     }
 
     private void pic_MouseMove(object sender, MouseEventArgs e)
     {
+        if (moving.Figure is not null)
+            moving.Move(prevPoint, point);
+    
         pic.Refresh();
     }
 
