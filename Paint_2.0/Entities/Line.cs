@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Paint_2._0.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,28 +10,29 @@ namespace Paint_2._0.Entities
     public class Line : IFigure
     {
         public bool IsCircle { get; set; } = false;
-        public List<PointF> Points { get; set; } = new();
+        public bool IsSelect { get; set; } = false;
+        public List<Point2> Points { get; set; } = new();
         public Color StrokeColor { get; set; } = Color.Black;
         public int StrokeThickness { get; set; } = 1;
         public Color? FillColor { get; set; }
 
-        public void Create(PointF startPointF, PointF endPointF, Color color)
+        public void Create(Point2 startPoint2, Point2 endPoint2, Color color)
         {
-            Points.Add(startPointF);
-            Points.Add(endPointF);
+            Points.Add(startPoint2);
+            Points.Add(endPoint2);
         }
 
-        public void Create(PointF startPointF, Vector2 vector, Color color)
+        public void Create(Point2 startPoint2, Vector2 vector, Color color)
         {
-            Points.Add(startPointF);
-            Points.Add(new PointF(startPointF.X + vector.X, startPointF.Y + vector.Y));
+            Points.Add(startPoint2);
+            Points.Add(new Point2(startPoint2.X + vector.X, startPoint2.Y + vector.Y));
             StrokeColor = color;
         }
 
         public void Move(Vector2 vector)
         {
             Points.ForEach(p
-                => p = new PointF(p.X + vector.X, p.Y + vector.Y));
+                => p = new Point2(p.X + vector.X, p.Y + vector.Y));
         }
 
         public void StrokeColorChange(Color color)
