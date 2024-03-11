@@ -11,6 +11,7 @@ namespace Paint_2._0.Entities
     {
         public bool IsCircle { get; set; } = false;
         public bool IsSelect { get; set; } = false;
+        public bool IsClosed { get; set; } = false;
         public List<Point2> Points { get; set; } = new();
         public Color StrokeColor { get; set; } = Color.Black;
         public int StrokeThickness { get; set; } = 1;

@@ -12,8 +12,8 @@ namespace Paint_2._0.Entities
     {
         public bool IsCircle { get; set; } = true;
         public bool IsSelect { get; set; } = false;
+        public bool IsClosed { get; set; } = true;
         public Point2 Center { get; set; }
-
         public double Radius { get; set; }
         public List<Point2> Points { get; set; } //первая точка - центр, вторая находится на границе окружности
 

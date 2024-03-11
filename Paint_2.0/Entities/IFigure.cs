@@ -11,6 +11,7 @@ namespace Paint_2._0.Entities
     {
         public bool IsCircle { get; set; } //проверка на круг: 0 - не круг, 1 - круг
         public bool IsSelect { get; set; } // выделена ли фигура
+        public bool IsClosed { get; set; }
         public List<Point2> Points { get; set; } //точки для построения фигуры
 
         public Color StrokeColor { get; set; } //цвет обводки
