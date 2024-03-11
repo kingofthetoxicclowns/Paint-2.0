@@ -305,6 +305,10 @@
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pic).EndInit();
             ResumeLayout(false);
+
+            pic.MouseDown += UpdateLocation;
+            pic.MouseMove += UpdateLocation;
+            pic.MouseUp += UpdateLocation;
         }
 
         #endregion
