@@ -10,13 +10,17 @@ namespace Paint_2._0.IO
     public static class IO
     {
 
-        public static List<string> FileFormats { get; set; } = new List<string>()
-            { "svg", "img", "jpg", "png" };
+        /// <summary>
+        /// Поддерживаемые форматы изображения.
+        /// </summary>
+        public static List<string> FileFormats { get; set; } = 
+                ["svg", "jpeg", "png"];
 
-    /// <summary>
-    /// Создаёт строку фильтра файлов по их расширению для экземпляра класса SaveFileDialog.
-    /// </summary>
-    public static string MakeFileFilter()
+        /// <summary>
+        /// Создаёт строку фильтра файлов по их расширению для экземпляра класса SaveFileDialog.<br/>
+        /// Фильтр включает в себя поддерживаемые форматы изображения.
+        /// </summary>
+        public static string MakeFileFilter()
         {
             string filterString = "";
             for (int i = 0; i < FileFormats.Count; i++)
@@ -25,8 +29,10 @@ namespace Paint_2._0.IO
             return filterString[..^1];
         }
 
-        // Получает информацию кодировщика заданного формата изображения.
-        private static ImageCodecInfo? GetEncoderInfo(String mimeType)
+        /// <summary>
+        /// Получает информацию кодировщика заданного формата изображения.
+        /// </summary>
+        private static ImageCodecInfo? GetEncoderInfo(string mimeType)
         {
             ImageCodecInfo[] encoders = ImageCodecInfo.GetImageEncoders();
             ImageCodecInfo? encoder = Array.Find(encoders, encoder => encoder.MimeType == mimeType);
@@ -34,19 +40,40 @@ namespace Paint_2._0.IO
             return encoder;
         }
 
-        // Сохраняет накаляканное в файл.
-        public static int Save(Bitmap bm, string fileName, int width, int height)
+        /// <summary>
+        /// Сохраняет изображение в файл по указанному пути.
+        /// </summary>
+        /// <param name="container">Контейнер фигур изображения.</param>
+        /// <param name="filePath">Путь сохранения файла изображения.</param>
+        /// <param name="width">Ширина изображения.</param>
+        /// <param name="height">Высота изображения.</param>
+        public static int Save(FigureContainer container, string filePath, int width, int height)
         {
-            Bitmap btm = bm.Clone(new Rectangle(0, 0, width, height), bm.PixelFormat);
-            btm.Save(fileName, ImageFormat.Jpeg);
+            string fileFormat = filePath.Split('.')[^1];
+
+            if (fileFormat == "svg")
+            {
+                CanvasToSVG(container, filePath);
+                return 0;
+            }
+
+            string svgFilePath = filePath[..^(fileFormat.Length)];
+            svgFilePath = string.Concat([svgFilePath, "svg"]);
+
+            CanvasToSVG(container, svgFilePath);
+            SVGToBitmapFormat(svgFilePath, filePath, width, height);
 
             return 0;
         }
 
-        // Из контейнера фигур формирует SVG-файл.
+        /// <summary>
+        /// Из контейнера фигур формирует SVG-файл.
+        /// </summary>
+        /// <param name="container">Контейнер фигур.</param>
+        /// <param name="filePath">Путь сохранения SVG-файла.</param>
         public static int CanvasToSVG(FigureContainer container, string filePath)
         {
-            XmlDocument doc = new XmlDocument();
+            XmlDocument doc = new();
             XmlElement svgElement = doc.CreateElement("svg");
             svgElement.SetAttribute("xmlns", "http://www.w3.org/2000/svg");
             svgElement.SetAttribute("version", "1.1");
@@ -54,7 +81,7 @@ namespace Paint_2._0.IO
 
             foreach (var figure in container.Figures)
             {
-                XmlElement figureElement = null;
+                XmlElement? figureElement = null;
 
                 if (figure is Circle circle)
                 {
@@ -113,7 +140,7 @@ namespace Paint_2._0.IO
         private static XmlElement CreateSquareElement(XmlDocument doc, Square square)
         {
             XmlElement polygonElement = doc.CreateElement("polygon");
-            StringBuilder points = new StringBuilder();
+            StringBuilder points = new();
 
             foreach (var point in square.Points)
             {
@@ -134,8 +161,10 @@ namespace Paint_2._0.IO
             return polygonElement;
         }
 
-        // Из SVG-файла переводит в указанный растровый формат.
-        public static void SVGToBitmapFormat(string svgPath, string outputPath, string bitmapFormat)
+        /// <summary>
+        /// Перевод SVG-файла в указанный растровый формат.
+        /// </summary>
+        public static void SVGToBitmapFormat(string svgPath, string outputPath, int width, int height)
         {
             Bitmap bitmap;
             SvgDocument svgDoc;
@@ -145,7 +174,15 @@ namespace Paint_2._0.IO
             long ImageQuality;
 
             svgDoc = SvgDocument.Open(svgPath);
-            bitmap = svgDoc.Draw();
+
+            bitmap = new Bitmap(width, height);
+            using (Graphics graphics = Graphics.FromImage(bitmap))
+            {
+                graphics.Clear(Color.White);
+                svgDoc.Draw(graphics);
+            }
+
+            string bitmapFormat = outputPath.Split('.')[^1];
 
             myImageCodecInfo = GetEncoderInfo(mimeType: $"image/{bitmapFormat}");
             if (myImageCodecInfo is null || !FileFormats.Contains(bitmapFormat))
@@ -160,7 +197,9 @@ namespace Paint_2._0.IO
             bitmap.Save(outputPath, myImageCodecInfo, myEncoderParameters);
         }
 
-        // Из SVG-файла формирует контейнер фигур.
+        /// <summary>
+        /// Перевод SVG-файла в контейнер фигур.
+        /// </summary>
         public static int SVGToCanvas()
         {
             return 0;

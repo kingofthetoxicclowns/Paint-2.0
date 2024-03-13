@@ -1,3 +1,4 @@
+using Paint_2._0.Entities;
 using System.Drawing.Imaging;
 
 namespace Paint_2._0
@@ -213,7 +214,7 @@ namespace Paint_2._0
             if (sfd.ShowDialog() == DialogResult.Cancel)
                 return;
 
-            IO.IO.Save(bm, sfd.FileName, pic.Width, pic.Height);
+            //IO.IO.Save(container, sfd.FileName, pic.Width, pic.Height);
         }
     }
 }
