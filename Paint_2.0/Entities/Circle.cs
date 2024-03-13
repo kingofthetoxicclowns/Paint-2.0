@@ -13,7 +13,7 @@ namespace Paint_2._0.Entities
         public PointF Center { get; set; }
 
         public double Radius { get; set; }
-        public List<PointF> Points { get; set; } //первая точка - центр, вторая находится на границе окружности
+        public List<PointF> Points { get; set; } = new List<PointF>();//первая точка - центр, вторая находится на границе окружности
 
         public Color StrokeColor { get; set; } = Color.Black;
 
