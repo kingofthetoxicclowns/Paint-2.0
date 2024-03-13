@@ -1,5 +1,6 @@
 ﻿using System.Drawing.Imaging;
 using Paint_2._0.Entities;
+using Paint_2._0.Utilities;
 using Svg;
 using System.Xml;
 using System.Text;
@@ -260,7 +261,7 @@ namespace Paint_2._0.IO
 
 
             Circle circle = new Circle();
-            circle.Create(new PointF(cx, cy), new PointF(cx + r, cy), strokeColor);
+            circle.Create(new Point2(cx, cy), new Point2(cx + r, cy), strokeColor);
             circle.StrokeThicknessChange(strokeThickness);
             if (fillColor != null)
             {
@@ -300,7 +301,7 @@ namespace Paint_2._0.IO
 
 
             Line line = new Line();
-            line.Create(new PointF(x1, y1), new PointF(x2, y2), strokeColor);
+            line.Create(new Point2(x1, y1), new Point2(x2, y2), strokeColor);
             line.StrokeThicknessChange(strokeThickness);
             return line;
         }
@@ -314,13 +315,13 @@ namespace Paint_2._0.IO
                 return null;
             }
 
-            List<PointF> points = new List<PointF>();
+            List<Point2> points = new List<Point2>();
             foreach (string pointCoord in pointCoords)
             {
                 string[] xy = pointCoord.Split(',');
                 float x = float.Parse(xy[0]);
                 float y = float.Parse(xy[1]);
-                points.Add(new PointF(x, y));
+                points.Add(new Point2(x, y));
             }
 
             // Проверка на квадрат
@@ -369,7 +370,7 @@ namespace Paint_2._0.IO
             return square;
         }
         // Определить образуют ли точки квадрат
-        private static bool IsSquare(List<PointF> points)
+        private static bool IsSquare(List<Point2> points)
         {
             return true;
         }

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Paint_2._0.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +10,9 @@ namespace Paint_2._0.Entities
     public interface IFigure
     {
         public bool IsCircle { get; set; } //проверка на круг: 0 - не круг, 1 - круг
-        public List<PointF> Points { get; set; } //точки для построения фигуры
+        public bool IsSelect { get; set; } // выделена ли фигура
+        public bool IsClosed { get; set; }
+        public List<Point2> Points { get; set; } //точки для построения фигуры
 
         public Color StrokeColor { get; set; } //цвет обводки
 
@@ -18,9 +20,9 @@ namespace Paint_2._0.Entities
 
         public Color? FillColor { get; set; } //цвет заливки (может быть null)
 
-        public void Create(PointF startPointF, PointF endPointF, Color color); //создание фигуры, даётся координата начала и координата конца фигуры с помощью типа PointF
+        public void Create(Point2 startPoint2, Point2 endPoint2, Color color); //создание фигуры, даётся координата начала и координата конца фигуры с помощью типа Point2
 
-        public void Create(PointF startPointF, Vector2 vector, Color color); // создание фигуры, даётся координата начала фигуры и вектор направления
+        public void Create(Point2 startPoint2, Vector2 vector, Color color); // создание фигуры, даётся координата начала фигуры и вектор направления
 
         public void Move(Vector2 vector); // перемещает все точки фигуры на вектор направления
 
