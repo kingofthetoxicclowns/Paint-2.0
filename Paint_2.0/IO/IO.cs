@@ -200,9 +200,179 @@ namespace Paint_2._0.IO
         /// <summary>
         /// Перевод SVG-файла в контейнер фигур.
         /// </summary>
-        public static int SVGToCanvas()
+        #region SVG to FigureContainer
+        public static FigureContainer SVGToCanvas(string filePath)
         {
-            return 0;
+            FigureContainer container = new FigureContainer();
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(filePath);
+
+            XmlNodeList figureNodes = doc.SelectNodes("//*[local-name()='svg']/*");
+
+            foreach (XmlNode figureNode in figureNodes)
+            {
+                IFigure? figure = null;
+
+                switch (figureNode.Name)
+                {
+                    case "circle":
+                        figure = CreateCircleFromXmlNode(figureNode);
+                        break;
+                    case "line":
+                        figure = CreateLineFromXmlNode(figureNode);
+                        break;
+                    case "polygon":
+                        figure = CreateSquareFromXmlNode(figureNode);
+                        break;
+                }
+                if (figure != null)
+                {
+                    container.Add(figure);
+                }
+            }
+
+            return container;
         }
+        private static Circle CreateCircleFromXmlNode(XmlNode node)
+        {
+            float cx = float.Parse(node.Attributes["cx"].Value);
+            float cy = float.Parse(node.Attributes["cy"].Value);
+            float r = float.Parse(node.Attributes["r"].Value, CultureInfo.InvariantCulture);
+
+            Color strokeColor = Color.Black; // Цвет обводки по умолчанию
+            if (node.Attributes["stroke"] != null)
+            {
+                strokeColor = ParseColor(node.Attributes["stroke"].Value);
+            }
+
+            int strokeThickness = 1; // Толщина обводки по умолчанию
+            if (node.Attributes["stroke-width"] != null)
+            {
+                strokeThickness = int.Parse(node.Attributes["stroke-width"].Value);
+            }
+
+            Color? fillColor = null;
+            if (node.Attributes["fill"] != null & node.Attributes["fill"].Value != "none")
+            {
+                fillColor = ParseColor(node.Attributes["fill"].Value);
+            }
+
+
+            Circle circle = new Circle();
+            circle.Create(new PointF(cx, cy), new PointF(cx + r, cy), strokeColor);
+            circle.StrokeThicknessChange(strokeThickness);
+            if (fillColor != null)
+            {
+                circle.Fill(fillColor.Value);
+            }
+            return circle;
+        }
+        private static Color ParseColor(string colorString)
+        {
+            try
+            {
+                return ColorTranslator.FromHtml(colorString);
+            }
+            catch (Exception)
+            {
+                return Color.Black;
+            }
+        }
+        private static Line CreateLineFromXmlNode(XmlNode node)
+        {
+            float x1 = float.Parse(node.Attributes["x1"].Value);
+            float y1 = float.Parse(node.Attributes["y1"].Value);
+            float x2 = float.Parse(node.Attributes["x2"].Value);
+            float y2 = float.Parse(node.Attributes["y2"].Value);
+
+            Color strokeColor = Color.Black; // Цвет обводки по умолчанию
+            if (node.Attributes["stroke"] != null)
+            {
+                strokeColor = ParseColor(node.Attributes["stroke"].Value);
+            }
+
+            int strokeThickness = 1; // Толщина обводки по умолчанию
+            if (node.Attributes["stroke-width"] != null)
+            {
+                strokeThickness = int.Parse(node.Attributes["stroke-width"].Value);
+            }
+
+
+            Line line = new Line();
+            line.Create(new PointF(x1, y1), new PointF(x2, y2), strokeColor);
+            line.StrokeThicknessChange(strokeThickness);
+            return line;
+        }
+        private static Square? CreateSquareFromXmlNode(XmlNode node)
+        {
+            string pointsStr = node.Attributes["points"].Value;
+            string[] pointCoords = pointsStr.Split(' ');
+            // Обрабатываем только четырёхугольники
+            if (pointCoords.Length != 4)
+            {
+                return null;
+            }
+
+            List<PointF> points = new List<PointF>();
+            foreach (string pointCoord in pointCoords)
+            {
+                string[] xy = pointCoord.Split(',');
+                float x = float.Parse(xy[0]);
+                float y = float.Parse(xy[1]);
+                points.Add(new PointF(x, y));
+            }
+
+            // Проверка на квадрат
+            if (!IsSquare(points))
+            {
+                return null;
+            }
+
+            Color strokeColor = Color.Black; // Цвет обводки по умолчанию
+            if (node.Attributes["stroke"] != null)
+            {
+                strokeColor = ParseColor(node.Attributes["stroke"].Value);
+            }
+
+            int strokeThickness = 1; // Толщина обводки по умолчанию
+            if (node.Attributes["stroke-width"] != null)
+            {
+                strokeThickness = int.Parse(node.Attributes["stroke-width"].Value);
+            }
+
+            Color? fillColor = null;
+            if (node.Attributes["fill"] != null & node.Attributes["fill"].Value != "none")
+            {
+                fillColor = ParseColor(node.Attributes["fill"].Value);
+            }
+
+            Square square = new Square();
+            // Чтобы не лежали на одной прямой
+            if (points[0].X != points[1].X & points[0].Y != points[1].Y)
+            {
+                square.Create(points[0], points[1], strokeColor);
+            }
+            else if (points[0].X != points[2].X & points[0].Y != points[2].Y)
+            {
+                square.Create(points[0], points[2], strokeColor);
+            }
+            else
+            {
+                square.Create(points[0], points[3], strokeColor);
+            }
+            square.StrokeThicknessChange(strokeThickness);
+            if (fillColor != null)
+            {
+                square.Fill(fillColor.Value);
+            }
+            return square;
+        }
+        // Определить образуют ли точки квадрат
+        private static bool IsSquare(List<PointF> points)
+        {
+            return true;
+        }
+        #endregion
     }
 }
