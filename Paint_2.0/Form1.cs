@@ -47,8 +47,6 @@ public partial class Form1 : Form
 
         point = new(0, 0);
         prevPoint = new(0, 0);
-        drawing = new();
-        moving = new();
         figureContainer = new();
     }
 
@@ -229,6 +227,6 @@ public partial class Form1 : Form
         if (sfd.ShowDialog() == DialogResult.Cancel)
             return;
 
-        //IO.IO.Save(container, sfd.FileName, pic.Width, pic.Height);
+        IO.IO.Save(figureContainer, sfd.FileName, pic.Width, pic.Height);
     }
 }
