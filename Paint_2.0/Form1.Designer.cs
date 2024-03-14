@@ -77,7 +77,7 @@
             btn_save.FlatStyle = FlatStyle.Flat;
             btn_save.ForeColor = Color.White;
             btn_save.ImageAlign = ContentAlignment.TopCenter;
-            btn_save.Location = new Point(820, 22);
+            btn_save.Location = new Point(720, 22);
             btn_save.Name = "btn_save";
             btn_save.Size = new Size(84, 32);
             btn_save.TabIndex = 11;
@@ -93,7 +93,7 @@
             btn_clear.FlatStyle = FlatStyle.Flat;
             btn_clear.ForeColor = Color.White;
             btn_clear.ImageAlign = ContentAlignment.TopCenter;
-            btn_clear.Location = new Point(820, 63);
+            btn_clear.Location = new Point(720, 63);
             btn_clear.Name = "btn_clear";
             btn_clear.Size = new Size(84, 32);
             btn_clear.TabIndex = 10;
@@ -123,7 +123,7 @@
             btn_line.ForeColor = Color.White;
             btn_line.Image = Properties.Resources.line;
             btn_line.ImageAlign = ContentAlignment.TopCenter;
-            btn_line.Location = new Point(733, 27);
+            btn_line.Location = new Point(620, 27);
             btn_line.Name = "btn_line";
             btn_line.Size = new Size(72, 65);
             btn_line.TabIndex = 7;
@@ -142,9 +142,9 @@
             btn_rect.ForeColor = Color.White;
             btn_rect.Image = Properties.Resources.rectangle;
             btn_rect.ImageAlign = ContentAlignment.TopCenter;
-            btn_rect.Location = new Point(655, 27);
+            btn_rect.Location = new Point(540, 27);
             btn_rect.Name = "btn_rect";
-            btn_rect.Size = new Size(72, 65);
+            btn_rect.Size = new Size(74, 65);
             btn_rect.TabIndex = 6;
             btn_rect.Text = "Rectangle";
             btn_rect.TextAlign = ContentAlignment.BottomCenter;
@@ -161,7 +161,7 @@
             btn_ellipse.ForeColor = Color.White;
             btn_ellipse.Image = Properties.Resources.circle;
             btn_ellipse.ImageAlign = ContentAlignment.TopCenter;
-            btn_ellipse.Location = new Point(577, 27);
+            btn_ellipse.Location = new Point(462, 27);
             btn_ellipse.Name = "btn_ellipse";
             btn_ellipse.Size = new Size(72, 65);
             btn_ellipse.TabIndex = 5;
@@ -178,13 +178,12 @@
             btn_eraser.FlatAppearance.MouseOverBackColor = Color.Green;
             btn_eraser.FlatStyle = FlatStyle.Flat;
             btn_eraser.ForeColor = Color.White;
-            btn_eraser.Image = Properties.Resources.eraser;
             btn_eraser.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_eraser.Location = new Point(499, 27);
+            btn_eraser.Location = new Point(421, 63);
             btn_eraser.Name = "btn_eraser";
-            btn_eraser.Size = new Size(72, 65);
+            btn_eraser.Size = new Size(35, 30);
             btn_eraser.TabIndex = 4;
-            btn_eraser.Text = "Eraser";
+            btn_eraser.Text = "R";
             btn_eraser.TextAlign = ContentAlignment.BottomCenter;
             btn_eraser.UseVisualStyleBackColor = false;
             btn_eraser.Click += btn_eraser_Click;
@@ -197,13 +196,12 @@
             btn_pencil.FlatAppearance.MouseOverBackColor = Color.Green;
             btn_pencil.FlatStyle = FlatStyle.Flat;
             btn_pencil.ForeColor = Color.White;
-            btn_pencil.Image = Properties.Resources.pencil;
             btn_pencil.ImageAlign = ContentAlignment.MiddleLeft;
             btn_pencil.Location = new Point(421, 27);
             btn_pencil.Name = "btn_pencil";
-            btn_pencil.Size = new Size(72, 65);
+            btn_pencil.Size = new Size(35, 30);
             btn_pencil.TabIndex = 3;
-            btn_pencil.Text = "Pencil";
+            btn_pencil.Text = "T";
             btn_pencil.TextAlign = ContentAlignment.BottomCenter;
             btn_pencil.UseVisualStyleBackColor = false;
             btn_pencil.Click += btn_pencil_Click;
@@ -276,8 +274,7 @@
             // pic
             // 
             pic.BackColor = Color.White;
-            pic.Dock = DockStyle.Fill;
-            pic.Location = new Point(0, 0);
+            pic.Location = new Point(50, 0);
             pic.Name = "pic";
             pic.Size = new Size(912, 511);
             pic.TabIndex = 0;

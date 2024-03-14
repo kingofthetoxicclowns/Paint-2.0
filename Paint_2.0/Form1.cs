@@ -160,14 +160,16 @@ public partial class Form1 : Form
             Draw(graphics, figure);
     }
 
+    // трансформация
     private void btn_pencil_Click(object sender, EventArgs e)
     {
-
+        
     }
 
+    // поворот
     private void btn_eraser_Click(object sender, EventArgs e)
     {
-
+        
     }
 
     private void btn_ellipse_Click(object sender, EventArgs e)
