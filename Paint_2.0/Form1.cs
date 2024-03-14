@@ -103,6 +103,7 @@ public partial class Form1 : Form
                 command = new Moving();
                 if (figure != null)
                     command.Start(figure);
+            }
         }
     }
 
