@@ -10,7 +10,7 @@ public partial class Form1 : Form
 {
     Bitmap bitmap;
     Graphics graphics;
-    Pen pen = new Pen(Color.Black, 1);
+    Pen pen;
 
     /// <summary>
     /// Текущая точка.
@@ -42,10 +42,13 @@ public partial class Form1 : Form
         InitializeComponent();
         this.Width = 950;
         this.Height = 700;
+
         bitmap = new Bitmap(pic.Width, pic.Height);
         graphics = Graphics.FromImage(bitmap);
         graphics.Clear(Color.White);
         pic.Image = bitmap;
+        pen = new Pen(Color.Black, 1);
+        pic_color.BackColor = Color.Black;
 
         point = new(0, 0);
         prevPoint = new(0, 0);
@@ -64,14 +67,13 @@ public partial class Form1 : Form
     {
         if (drawing.Figure is not null)
             drawing.Draw(point);
-        IFigure? figure = figureContainer.Select(new Point2(e.Location));
-        if (figure is not null)
+        else
         {
-            moving.Start(figure);
-        }
-        if (moving.IsCommandStart)
-        {
-            moving.Stop();
+            IFigure? figure = figureContainer.Select(new Point2(e.Location));
+            if (!moving.IsCommandStart && figure != null)
+                moving.Start(figure);
+            else
+                moving.Stop();
         }
     }
 
@@ -125,7 +127,7 @@ public partial class Form1 : Form
         if (drawing.IsDraw)
         {
             IFigure? figure;
-            if (drawing.Figure.Points.Count() == 0)
+            if (drawing.Figure?.Points.Count() == 0)
                 drawing.Draw(prevPoint);
                 
             figure = drawing.Draw(point);
