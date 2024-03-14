@@ -1,3 +1,5 @@
+using Paint_2._0.Entities;
+
 namespace Paint_2._0
 {
     internal static class Program
