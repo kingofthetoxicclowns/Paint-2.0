@@ -56,6 +56,29 @@ public partial class Form1 : Form
         point = new Point2(e.Location.X, e.Location.Y);
     }
 
+    //
+    private void Draw(Graphics graphics, IFigure figure)
+    {
+        if (figure.Points.Count() < 2)
+            return;
+        float width = 1;
+        if (figure.IsSelect)
+            width = 3;
+        Pen pen = new Pen(figure.StrokeColor, width);
+        if (figure is Circle)
+            graphics.DrawEllipse(
+            pen,
+            figure.Points[0].X,
+            figure.Points[0].Y,
+            Math.Abs(figure.Points[1].X - figure.Points[0].X),
+            Math.Abs(figure.Points[1].Y - figure.Points[0].Y));
+        else
+            graphics.DrawPolygon(pen, figure.Points
+                .Select(p => new PointF(p.X, p.Y))
+                .ToArray());
+    }
+    //
+
     private void pic_MouseDown(object sender, MouseEventArgs e)
     {
         if (command is Drawing)
@@ -80,7 +103,6 @@ public partial class Form1 : Form
                 command = new Moving();
                 if (figure != null)
                     command.Start(figure);
-            }
         }
     }
 
@@ -88,7 +110,7 @@ public partial class Form1 : Form
     {
         if (command is Moving && command.IsCommandStart)
             command.ExecuteMove(prevPoint, point);
-    
+            
         pic.Refresh();
     }
 
@@ -101,6 +123,11 @@ public partial class Form1 : Form
             command.Stop();
             command = null;
         }
+        //
+        graphics.Clear(Color.White);
+        foreach (IFigure figure in figureContainer.Figures)
+            Draw(graphics, figure);
+        //
     }
 
     private void btn_pencil_Click(object sender, EventArgs e)
@@ -133,7 +160,7 @@ public partial class Form1 : Form
 
     private void pic_Paint(object sender, PaintEventArgs e)
     {
-        Graphics graphics = e.Graphics;
+        Graphics top_graphics = e.Graphics;
         if (command is Drawing && command.IsCommandStart)
         {
             IFigure? figure;
@@ -141,7 +168,17 @@ public partial class Form1 : Form
                 command.ExecuteDraw(prevPoint);
                 
             figure = command.ExecuteDraw(point);
+            //
+            if (figure != null)
+                Draw(top_graphics, figure);
+            //
         }
+
+        //
+        graphics.Clear(Color.White);
+        foreach (IFigure figure in figureContainer.Figures)
+            Draw(graphics, figure);
+        //
     }
 
     private void btn_clear_Click(object sender, EventArgs e)
