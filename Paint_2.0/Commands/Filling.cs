@@ -1,12 +1,12 @@
-using Paint_2._0.Entities;
+﻿using Paint_2._0.Entities;
 using Paint_2._0.Utilities;
 
 namespace Paint_2._0.Commands;
 
 /// <summary>
-/// Команда перемещения фигуры.
+/// Команда заливки фигуры.
 /// </summary>
-public class Moving : IFigureCommand
+public class Filling : IFigureCommand
 {
     private IFigure? figure;
 
@@ -35,24 +35,19 @@ public class Moving : IFigureCommand
         if (figure == null)
             throw new ArgumentNullException($"Необходимо задать фигуру!");
         this.figure = figure;
-        isCommandStart = true;
+        isCommandStart = false;
     }
 
     /// <inheritdoc/>
-    public void ExecuteMove(Point2 startPoint, Point2 point)
+    public void ExecuteFill(Color color)
     {
         if (figure is null)
             throw new ArgumentNullException($"Параметры не инициализованы!");
         isCommandStart = true;
-        Vector2 vector = new(point.X - startPoint.X, point.Y - startPoint.Y);
-        for (int i = 0; i < figure.Points.Count(); i++)
-        {
-            figure.Points[i].X += vector.X;
-            figure.Points[i].Y += vector.Y;
-        }
+        figure.FillColor = color;
     }
 
-    /// <inheritdoc>
+    /// <inheritdoc/>
     public void Stop()
     {
         figure = null;
@@ -60,15 +55,15 @@ public class Moving : IFigureCommand
     }
 
     /// <inheritdoc/>
-    /// <remarks>Для команды перемещения этот метод недоступен.</remarks>
+    /// <remarks>Для команды заливки этот метод недоступен.</remarks>
     public IFigure? ExecuteDraw(Point2 point)
     {
         throw new NotImplementedException($"Для команды перемещения этот метод недоступен!");
     }
 
     /// <inheritdoc/>
-    /// <remarks>Для команды перемещения этот метод недоступен.</remarks>
-    public void ExecuteFill(Color color)
+    /// <remarks>Для команды заливки этот метод недоступен.</remarks>
+    public void ExecuteMove(Point2 startPoint, Point2 point)
     {
         throw new NotImplementedException($"Для команды перемещения этот метод недоступен!");
     }
