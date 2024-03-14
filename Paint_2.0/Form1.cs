@@ -253,12 +253,15 @@ public partial class Form1 : Form
 
     private void btn_save_Click(object sender, EventArgs e)
     {
-        var sfd = new SaveFileDialog();
-        sfd.Filter = "Image(*.jpg)|*.jpg|(*.*|*.*";
-        if (sfd.ShowDialog() == DialogResult.OK)
+        var sfd = new SaveFileDialog
         {
-            Bitmap btm = bitmap.Clone(new Rectangle(0, 0, pic.Width, pic.Height), bitmap.PixelFormat);
-            btm.Save(sfd.FileName, ImageFormat.Jpeg);
-        }
+            Filter = IO.IO.MakeFileFilter(),
+            FileName = "Paint2.0-Image"
+        };
+
+        if (sfd.ShowDialog() == DialogResult.Cancel)
+            return;
+
+        //IO.IO.Save(container, sfd.FileName, pic.Width, pic.Height);
     }
 }
