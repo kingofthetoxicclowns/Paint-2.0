@@ -56,7 +56,6 @@ public partial class Form1 : Form
         point = new Point2(e.Location.X, e.Location.Y);
     }
 
-    //
     private void Draw(Graphics graphics, IFigure figure)
     {
         if (figure.Points.Count() < 2)
@@ -65,19 +64,46 @@ public partial class Form1 : Form
         if (figure.IsSelect)
             width = 3;
         Pen pen = new Pen(figure.StrokeColor, width);
+        Brush? brush = figure.FillColor.HasValue ? new SolidBrush(figure.FillColor.Value) : null;
         if (figure is Circle)
-            graphics.DrawEllipse(
-            pen,
-            figure.Points[0].X,
-            figure.Points[0].Y,
-            Math.Abs(figure.Points[1].X - figure.Points[0].X),
-            Math.Abs(figure.Points[1].Y - figure.Points[0].Y));
+        {
+            if (!figure.FillColor.HasValue)
+            {
+                float radius = (new Vector2(
+                figure.Points[1].X - figure.Points[0].X,
+                figure.Points[1].Y - figure.Points[0].Y)).Length * 2;
+                graphics.DrawEllipse(
+                    pen,
+                    figure.Points[0].X - radius / 2,
+                    figure.Points[0].Y - radius / 2,
+                    radius,
+                    radius);
+            }
+            else
+            {
+                float radius = (new Vector2(
+                figure.Points[1].X - figure.Points[0].X,
+                figure.Points[1].Y - figure.Points[0].Y)).Length * 2;
+                graphics.FillEllipse(
+                    brush,
+                    figure.Points[0].X - radius / 2,
+                    figure.Points[0].Y - radius / 2,
+                    radius,
+                    radius);
+            }
+        }
         else
+        if (!figure.FillColor.HasValue)
+        {
             graphics.DrawPolygon(pen, figure.Points
                 .Select(p => new PointF(p.X, p.Y))
                 .ToArray());
+        }
+        else
+            graphics.FillPolygon(brush, figure.Points
+                .Select(p => new PointF(p.X, p.Y))
+                .ToArray());
     }
-    //
 
     private void pic_MouseDown(object sender, MouseEventArgs e)
     {
@@ -92,6 +118,9 @@ public partial class Form1 : Form
                 command.ExecuteFill(pen.Color);
                 command.Stop();
                 command = null;
+                graphics.Clear(Color.White);
+                foreach (IFigure figure1 in figureContainer.Figures)
+                    Draw(graphics, figure1);
             }
             else if (command is Moving)
             {
@@ -104,6 +133,8 @@ public partial class Form1 : Form
                 if (figure != null)
                     command.Start(figure);
             }
+            if (figure != null)
+                Draw(graphics, figure);
         }
     }
 
@@ -111,7 +142,7 @@ public partial class Form1 : Form
     {
         if (command is Moving && command.IsCommandStart)
             command.ExecuteMove(prevPoint, point);
-            
+
         pic.Refresh();
     }
 
@@ -124,21 +155,21 @@ public partial class Form1 : Form
             command.Stop();
             command = null;
         }
-        //
         graphics.Clear(Color.White);
         foreach (IFigure figure in figureContainer.Figures)
             Draw(graphics, figure);
-        //
     }
 
+    // трансформация
     private void btn_pencil_Click(object sender, EventArgs e)
     {
-
+        
     }
 
+    // поворот
     private void btn_eraser_Click(object sender, EventArgs e)
     {
-
+        
     }
 
     private void btn_ellipse_Click(object sender, EventArgs e)
@@ -167,19 +198,17 @@ public partial class Form1 : Form
             IFigure? figure;
             if (command.Figure?.Points.Count() == 0)
                 command.ExecuteDraw(prevPoint);
-                
+
             figure = command.ExecuteDraw(point);
-            //
             if (figure != null)
                 Draw(top_graphics, figure);
-            //
         }
-
-        //
-        graphics.Clear(Color.White);
-        foreach (IFigure figure in figureContainer.Figures)
-            Draw(graphics, figure);
-        //
+        if (command is Moving)
+        {
+            graphics.Clear(Color.White);
+            foreach (IFigure figure in figureContainer.Figures)
+                Draw(graphics, figure);
+        }
     }
 
     private void btn_clear_Click(object sender, EventArgs e)
