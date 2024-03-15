@@ -107,17 +107,21 @@ namespace Paint_2._0.IO
             doc.Save(filePath);
             return 0;
         }
+        private static string ColorToRGBA(System.Drawing.Color color)
+        {
+            return string.Format($"rgba({color.R.ToString()},{color.G.ToString()},{color.B.ToString()},{color.A.ToString()}");
+        }
         private static XmlElement CreateCircleElement(XmlDocument doc, Circle circle)
         {
             XmlElement circleElement = doc.CreateElement("circle");
             circleElement.SetAttribute("cx", circle.Center.X.ToString());
             circleElement.SetAttribute("cy", circle.Center.Y.ToString());
             circleElement.SetAttribute("r", circle.Radius.ToString("0.0", CultureInfo.InvariantCulture));
-            circleElement.SetAttribute("stroke", circle.StrokeColor.Name.ToString());
+            circleElement.SetAttribute("stroke", ColorToRGBA(circle.StrokeColor));
             circleElement.SetAttribute("stroke-width", circle.StrokeThickness.ToString());
             if (circle.FillColor != null)
             {
-                circleElement.SetAttribute("fill", circle.FillColor.ToString());
+                circleElement.SetAttribute("fill", ColorToRGBA(circle.FillColor.Value));
             }
             else
             {
@@ -133,7 +137,7 @@ namespace Paint_2._0.IO
             lineElement.SetAttribute("y1", line.Points[0].Y.ToString());
             lineElement.SetAttribute("x2", line.Points[1].X.ToString());
             lineElement.SetAttribute("y2", line.Points[1].Y.ToString());
-            lineElement.SetAttribute("stroke", line.StrokeColor.Name.ToString());
+            lineElement.SetAttribute("stroke", ColorToRGBA(line.StrokeColor));
             lineElement.SetAttribute("stroke-width", line.StrokeThickness.ToString());
             return lineElement;
         }
@@ -149,11 +153,11 @@ namespace Paint_2._0.IO
             }
 
             polygonElement.SetAttribute("points", points.ToString().Trim());
-            polygonElement.SetAttribute("stroke", square.StrokeColor.Name.ToString());
+            polygonElement.SetAttribute("stroke", ColorToRGBA(square.StrokeColor));
             polygonElement.SetAttribute("stroke-width", square.StrokeThickness.ToString());
             if (square.FillColor != null)
             {
-                polygonElement.SetAttribute("fill", square.FillColor.Value.Name.ToString());
+                polygonElement.SetAttribute("fill", ColorToRGBA(square.FillColor.Value));
             }
             else
             {

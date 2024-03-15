@@ -6,71 +6,84 @@ namespace Paint_2._0.Commands;
 /// <summary>
 /// Команда создания фигуры.
 /// </summary>
-public class Drawing
+public class Drawing : IFigureCommand
 {
-    /// <summary>
-    /// Фишгура над которой выполняется команда.
-    /// </summary>
-    public IFigure? Figure { get; private set; }
+    private IFigure? figure;
 
-    /// <summary>
-    /// Была ли команда запущена.
-    /// </summary>
-    public bool IsDraw { get; private set; }
+    /// <inheritdoc/>
+    public IFigure? Figure { get { return figure; } }
 
-    /// <summary>
-    /// Точка начала рисования.
-    /// </summary>
-    private Point2 startpoint = new(0, 0);
+    private bool isCommandStart;
 
-    /// <summary>
-    /// Цвет пера рисования.
-    /// </summary>
+    /// <inheritdoc/>
+    public bool IsCommandStart { get { return isCommandStart; } }
+
+    private Point2? startpoint;
+
+    /// <inheritdoc/>
+    public Point2? Startpoint { get { return startpoint; } }
+
     private Color? color;
 
-    /// <summary>
-    /// Запуск команды.
-    /// </summary>
-    /// <param name="figure">Фигура</param>
-    /// <param name="color">Цвет пера рисования</param>
-    public void Start(IFigure figure, Color color)
+    /// <inheritdoc/>
+    public Color? Color { get { return color; } }
+
+    /// <inheritdoc/>
+    /// <remarks>Параметр color - обязателен.</remarks>
+    public void Start(IFigure figure, Color? color)
     {
-        Figure = figure;
+        if (figure == null)
+            throw new ArgumentNullException($"Необходимо задать фигуру!");
+        if (color == null)
+            throw new ArgumentNullException($"Для команды рисования необходимо определить цвет пера!");
+        this.figure = figure;
         this.color = color;
+        startpoint = new(0, 0);
+        isCommandStart = false;
     }
 
-    /// <summary>
-    /// Создание фигуры.
-    /// </summary>
-    /// <param name="point">Точка</param>
-    /// <returns>Созданная фигура</returns>
-    public IFigure? Draw(Point2 point)
+    /// <inheritdoc/>
+    public IFigure? ExecuteDraw(Point2 point)
     {
-        if (Figure is null || !color.HasValue)
-            return null;
+        if (figure is null 
+            || !color.HasValue
+            || startpoint == null)
+            throw new ArgumentNullException($"Параметры не инициализованы!");
 
         if (startpoint.IsEmpty)
         {
             startpoint = point;
-            IsDraw = true;
+            isCommandStart = true;
         }
-        else
+        else if (!startpoint.Equals(point))
         {
-            Figure.Points.Clear();
-            Figure.Create(startpoint, point, color.Value);
-            return Figure;
+            figure.Points.Clear();
+            figure.Create(startpoint, point, color.Value);
+            return figure;
         }
         return null;
     }
 
-    /// <summary>
-    /// Остановка команды.
-    /// </summary>
-    public void End()
+    /// <inheritdoc/>
+    public void Stop()
     {
-        Figure = null;
+        figure = null;
         color = null;
-        startpoint = new(0, 0);
-        IsDraw = false;
+        startpoint = null;
+        isCommandStart = false;
+    }
+
+    /// <inheritdoc/>
+    /// <remarks>Для команды рисования этот метод недоступен.</remarks>
+    public void ExecuteMove(Point2 startPoint, Point2 point)
+    {
+        throw new NotImplementedException($"Для команды рисования этот метод недоступен!");
+    }
+
+    /// <inheritdoc/>
+    /// <remarks>Для команды рисования этот метод недоступен.</remarks>
+    public void ExecuteFill(Color color)
+    {
+        throw new NotImplementedException($"Для команды рисования этот метод недоступен!");
     }
 }
