@@ -291,9 +291,6 @@
             pic.TabStop = false;
             pic.Paint += pic_Paint;
             pic.MouseClick += pic_MouseClick;
-            pic.MouseDown += pic_MouseDown;
-            pic.MouseMove += pic_MouseMove;
-            pic.MouseUp += pic_MouseUp;
             pic.MouseDown += UpdateLocation;
             pic.MouseMove += UpdateLocation;
             pic.MouseUp += UpdateLocation;

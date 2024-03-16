@@ -27,7 +27,7 @@ public static class GeometryUtility
         float cross_product = BAx * BCy - BAy * BCx;
 
         // считаем угол
-        return (float)Math.Atan2(cross_product, dot_product);
+        return Math.Abs((float)Math.Atan2(cross_product, dot_product));
     }
 
     /// <summary>
