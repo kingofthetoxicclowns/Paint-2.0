@@ -310,7 +310,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Paint 2.0";
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)color_picker).EndInit();
             panel3.ResumeLayout(false);
