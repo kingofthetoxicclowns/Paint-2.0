@@ -73,6 +73,7 @@
             // btn_save
             // 
             btn_save.BackColor = Color.YellowGreen;
+            btn_save.Cursor = Cursors.Hand;
             btn_save.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 192, 0);
             btn_save.FlatAppearance.MouseOverBackColor = Color.Green;
             btn_save.FlatStyle = FlatStyle.Flat;
@@ -90,6 +91,7 @@
             // btn_clear
             // 
             btn_clear.BackColor = Color.YellowGreen;
+            btn_clear.Cursor = Cursors.Hand;
             btn_clear.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 192, 0);
             btn_clear.FlatAppearance.MouseOverBackColor = Color.Green;
             btn_clear.FlatStyle = FlatStyle.Flat;
@@ -234,6 +236,7 @@
             // pic_color
             // 
             pic_color.BackColor = Color.White;
+            pic_color.Cursor = Cursors.Hand;
             pic_color.Location = new Point(238, 52);
             pic_color.Margin = new Padding(3, 4, 3, 4);
             pic_color.Name = "pic_color";
