@@ -127,8 +127,8 @@
             btn_line.FlatAppearance.MouseOverBackColor = Color.Green;
             btn_line.FlatStyle = FlatStyle.Flat;
             btn_line.ForeColor = Color.White;
-            btn_line.Image = Properties.Resources.line1;
-            btn_line.ImageAlign = ContentAlignment.TopCenter;
+            btn_line.BackgroundImage = Properties.Resources.line1;
+            btn_line.BackgroundImageLayout = ImageLayout.Zoom;
             btn_line.Location = new Point(709, 36);
             btn_line.Margin = new Padding(3, 4, 3, 4);
             btn_line.Name = "btn_line";
@@ -146,8 +146,8 @@
             btn_rect.FlatAppearance.MouseOverBackColor = Color.Green;
             btn_rect.FlatStyle = FlatStyle.Flat;
             btn_rect.ForeColor = Color.White;
-            btn_rect.Image = Properties.Resources.rect;
-            btn_rect.ImageAlign = ContentAlignment.TopCenter;
+            btn_rect.BackgroundImage = Properties.Resources.rect;
+            btn_rect.BackgroundImageLayout = ImageLayout.Zoom;
             btn_rect.Location = new Point(617, 36);
             btn_rect.Margin = new Padding(3, 4, 3, 4);
             btn_rect.Name = "btn_rect";
@@ -165,8 +165,8 @@
             btn_ellipse.FlatAppearance.MouseOverBackColor = Color.Green;
             btn_ellipse.FlatStyle = FlatStyle.Flat;
             btn_ellipse.ForeColor = Color.White;
-            btn_ellipse.Image = Properties.Resources.circle1;
-            btn_ellipse.ImageAlign = ContentAlignment.TopCenter;
+            btn_ellipse.BackgroundImage = Properties.Resources.circle1;
+            btn_ellipse.BackgroundImageLayout = ImageLayout.Zoom;
             btn_ellipse.Location = new Point(528, 36);
             btn_ellipse.Margin = new Padding(3, 4, 3, 4);
             btn_ellipse.Name = "btn_ellipse";
@@ -184,8 +184,8 @@
             btn_rotate.FlatAppearance.MouseOverBackColor = Color.Green;
             btn_rotate.FlatStyle = FlatStyle.Flat;
             btn_rotate.ForeColor = Color.White;
-            btn_rotate.Image = Properties.Resources.rotation;
-            btn_rotate.ImageAlign = ContentAlignment.BottomCenter;
+            btn_rotate.BackgroundImage = Properties.Resources.rotation;
+            btn_rotate.BackgroundImageLayout = ImageLayout.Zoom;
             btn_rotate.Location = new Point(481, 84);
             btn_rotate.Margin = new Padding(3, 4, 3, 4);
             btn_rotate.Name = "btn_rotate";
@@ -203,8 +203,8 @@
             btn_transform.FlatAppearance.MouseOverBackColor = Color.Green;
             btn_transform.FlatStyle = FlatStyle.Flat;
             btn_transform.ForeColor = Color.White;
-            btn_transform.Image = Properties.Resources.transform;
-            btn_transform.ImageAlign = ContentAlignment.BottomCenter;
+            btn_transform.BackgroundImage = Properties.Resources.transform;
+            btn_transform.BackgroundImageLayout = ImageLayout.Zoom;
             btn_transform.Location = new Point(481, 36);
             btn_transform.Margin = new Padding(3, 4, 3, 4);
             btn_transform.Name = "btn_transform";
@@ -222,8 +222,8 @@
             btn_fill.FlatAppearance.MouseOverBackColor = Color.Green;
             btn_fill.FlatStyle = FlatStyle.Flat;
             btn_fill.ForeColor = Color.White;
-            btn_fill.Image = Properties.Resources.fill;
-            btn_fill.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_fill.BackgroundImage = Properties.Resources.fill;
+            btn_fill.BackgroundImageLayout = ImageLayout.Zoom;
             btn_fill.Location = new Point(392, 36);
             btn_fill.Margin = new Padding(3, 4, 3, 4);
             btn_fill.Name = "btn_fill";
@@ -262,8 +262,8 @@
             btn_color.FlatAppearance.MouseOverBackColor = Color.Green;
             btn_color.FlatStyle = FlatStyle.Flat;
             btn_color.ForeColor = Color.White;
-            btn_color.Image = Properties.Resources.color1;
-            btn_color.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_color.BackgroundImage = Properties.Resources.color1;
+            btn_color.BackgroundImageLayout = ImageLayout.Zoom;
             btn_color.Location = new Point(11, 20);
             btn_color.Margin = new Padding(3, 4, 3, 4);
             btn_color.Name = "btn_color";
