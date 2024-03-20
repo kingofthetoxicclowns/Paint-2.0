@@ -1,7 +1,8 @@
-﻿using Paint_2._0.Entities;
-using Paint_2._0.Utilities;
+﻿using EntitiesLib;
+using GeometryUtils;
+using System.Drawing;
 
-namespace Paint_2._0.Commands;
+namespace CommandsLib;
 
 /// <summary>
 /// Команда создания фигуры.
@@ -45,7 +46,7 @@ public class Drawing : IFigureCommand
     /// <inheritdoc/>
     public IFigure? ExecuteDraw(Point2 point)
     {
-        if (figure is null 
+        if (figure is null
             || !color.HasValue
             || startpoint == null)
             throw new ArgumentNullException($"Параметры не инициализованы!");

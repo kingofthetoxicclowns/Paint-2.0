@@ -1,7 +1,8 @@
-﻿using Paint_2._0.Entities;
-using Paint_2._0.Utilities;
+﻿using EntitiesLib;
+using GeometryUtils;
+using System.Drawing;
 
-namespace Paint_2._0.Commands;
+namespace CommandsLib;
 
 /// <summary>
 /// Команда заливки фигуры.

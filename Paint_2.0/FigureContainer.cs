@@ -1,5 +1,5 @@
-﻿using Paint_2._0.Entities;
-using Paint_2._0.Utilities;
+﻿using EntitiesLib;
+using GeometryUtils;
 
 namespace Paint_2._0;
 
@@ -25,6 +25,18 @@ public class FigureContainer
     public void Add(IFigure figure)
     {
         Figures.Add(figure);
+    }
+
+    /// <summary>
+    /// Выбор фигуры из контейнера по точке.
+    /// Для выбранной фигуры флаг IsSelect помечается true.
+    /// </summary>
+    /// <param name="point">Точка</param>
+    /// <returns>Выбранная фигура</returns>
+    public IFigure? Select(Point point)
+    {
+        Point2 point2 = new(point.X, point.Y);
+        return Select(point2);
     }
 
     /// <summary>

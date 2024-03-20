@@ -1,8 +1,6 @@
-using Paint_2._0.Commands;
-using Paint_2._0.Entities;
-using Paint_2._0.Utilities;
-using System.Drawing;
-using System.Drawing.Imaging;
+using CommandsLib;
+using EntitiesLib;
+using GeometryUtils;
 
 namespace Paint_2._0;
 
@@ -111,7 +109,7 @@ public partial class Form1 : Form
             command.ExecuteDraw(point);
         else
         {
-            IFigure? figure = figureContainer.Select(new Point2(e.Location));
+            IFigure? figure = figureContainer.Select(e.Location);
             if (command is Filling && figure != null)
             {
                 command.Start(figure);

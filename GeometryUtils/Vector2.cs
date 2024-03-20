@@ -1,4 +1,4 @@
-﻿namespace Paint_2._0.Utilities;
+﻿namespace GeometryUtils;
 
 /// <summary>
 /// Вектор с координатами вещественного типа в двумерном простанстве.
