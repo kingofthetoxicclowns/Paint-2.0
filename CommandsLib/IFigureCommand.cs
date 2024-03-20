@@ -1,7 +1,8 @@
-﻿using Paint_2._0.Entities;
-using Paint_2._0.Utilities;
+﻿using EntitiesLib;
+using GeometryUtils;
+using System.Drawing;
 
-namespace Paint_2._0.Commands;
+namespace CommandsLib;
 
 /// <summary>
 /// Интерфейс команд над фигурами.
@@ -11,17 +12,17 @@ public interface IFigureCommand
     /// <summary>
     /// Фигура над которой выполняется команда.
     /// </summary>
-    public IFigure? Figure { get;}
+    public IFigure? Figure { get; }
 
     /// <summary>
     /// Была ли команда запущена.
     /// </summary>
-    public bool IsCommandStart { get;}
+    public bool IsCommandStart { get; }
 
     /// <summary>
     /// Точка начала рисования.
     /// </summary>
-    public Point2? Startpoint { get;}
+    public Point2? Startpoint { get; }
 
     /// <summary>
     /// Цвет пера рисования.

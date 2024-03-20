@@ -1,4 +1,4 @@
-﻿namespace Paint_2._0.Utilities;
+﻿namespace GeometryUtils;
 
 /// <summary>
 /// Вспомогательный класс с геометрическими операциями.
