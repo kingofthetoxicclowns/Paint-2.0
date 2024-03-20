@@ -213,6 +213,7 @@ public partial class Form1 : Form
 
     private void btn_clear_Click(object sender, EventArgs e)
     {
+        figureContainer.Figures.Clear();
         graphics.Clear(Color.White);
         pic.Image = bitmap;
     }
