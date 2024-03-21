@@ -1,4 +1,6 @@
-﻿namespace Paint_2._0.Utilities;
+﻿using System.Drawing;
+
+namespace GeometryUtils;
 
 /// <summary>
 /// Точка с координатами вещественного типа в двумерном простанстве.
@@ -41,11 +43,11 @@ public class Point2
 
     public static Point2 operator +(Point2 one, Point2 two)
     {
-        return (new Point2(one.X + two.X, one.Y + two.Y));
+        return new Point2(one.X + two.X, one.Y + two.Y);
     }
 
     public static Point2 operator ++(Point2 one)
     {
-        return (new Point2(one.X + 1, one.Y + 1));
+        return new Point2(one.X + 1, one.Y + 1);
     }
 }

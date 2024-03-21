@@ -1,4 +1,4 @@
-﻿namespace Paint_2._0.Utilities;
+﻿namespace GeometryUtils;
 
 /// <summary>
 /// Вспомогательный класс с геометрическими операциями.
@@ -47,4 +47,53 @@ public static class GeometryUtility
         float a = Math.Abs(totalAngle);
         return Math.Abs(totalAngle) > 1;
     }
+
+    /// <summary>
+    /// Находит точку пересечения прямых ab и cd.
+    /// Строится уравнение прямой для общего случая, и когда векторы коллинеарны, но не равны.
+    /// </summary>
+    /// <param name="a">точка внутри полигона</param>
+    /// <param name="b">предыдущее местоположение</param>
+    /// <param name="c">первая точка сегманта</param>
+    /// <param name="d">вторая точка сегмента</param>
+    /// <returns>Точка пересечения прямых ab и cd</returns>
+    public static Point2 StraightLinesIntersection(Point2 a, Point2 b, Point2 c, Point2 d)
+    {
+        float X = 0, Y = 0;
+ 
+        float lambda = (a.X - b.X) / (a.Y - b.Y);
+        float gamma = (c.X - d.X) / (c.Y - d.Y);
+ 
+        if (a.X == b.X)
+        {
+            X = a.X;
+            Y = (X - c.X) / gamma + c.Y;
+        }
+ 
+        if (a.Y == b.Y)
+        {
+            Y = a.Y;
+            X = (Y - c.Y) * gamma + c.X;
+        }
+ 
+        if (c.X == d.X)
+        {
+            X = d.X;
+            Y = (X - a.X) / lambda + a.Y;
+        }
+ 
+        if (c.Y == d.Y)
+        {
+            Y = c.Y;
+            X = (Y - a.Y) * lambda + a.X;
+        }
+ 
+        if (a.X != b.X && a.Y != b.Y && c.X != d.X && c.Y != d.Y)
+        {
+            Y = (a.Y * lambda - c.Y * gamma - a.X + c.X) / (lambda - gamma);
+            X = (Y - a.Y) * lambda + a.X;
+        }
+ 
+        return new Point2(X, Y);
+     }
 }

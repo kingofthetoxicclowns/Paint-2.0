@@ -1,11 +1,7 @@
-﻿using Paint_2._0.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GeometryUtils;
+using System.Drawing;
 
-namespace Paint_2._0.Entities
+namespace EntitiesLib
 {
     public interface IFigure
     {
