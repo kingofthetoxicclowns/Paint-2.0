@@ -44,7 +44,7 @@ public class Drawing : IFigureCommand
     }
 
     /// <inheritdoc/>
-    public IFigure? ExecuteDraw(Point2 point)
+    public IFigure? ExecuteByOnePoint(Point2 point)
     {
         if (figure is null
             || !color.HasValue
@@ -76,14 +76,14 @@ public class Drawing : IFigureCommand
 
     /// <inheritdoc/>
     /// <remarks>Для команды рисования этот метод недоступен.</remarks>
-    public void ExecuteMove(Point2 startPoint, Point2 point)
+    public void ExecuteByTwoPoints(Point2 startPoint, Point2 point)
     {
         throw new NotImplementedException($"Для команды рисования этот метод недоступен!");
     }
 
     /// <inheritdoc/>
     /// <remarks>Для команды рисования этот метод недоступен.</remarks>
-    public void ExecuteFill(Color color)
+    public void ExecuteByColor(Color color)
     {
         throw new NotImplementedException($"Для команды рисования этот метод недоступен!");
     }

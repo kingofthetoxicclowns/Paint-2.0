@@ -41,20 +41,20 @@ public interface IFigureCommand
     /// </summary>
     /// <param name="point">Точка</param>
     /// <returns>Созданная фигура</returns>
-    public IFigure? ExecuteDraw(Point2 point);
+    public IFigure? ExecuteByOnePoint(Point2 point);
 
     /// <summary>
     /// Перемещение фигуры.
     /// </summary>
     /// <param name="startPoint">Начальная точка</param>
     /// <param name="point">Конечная точка</param>
-    public void ExecuteMove(Point2 startPoint, Point2 point);
+    public void ExecuteByTwoPoints(Point2 startPoint, Point2 point);
 
     /// <summary>
     /// Заливка фигуры.
     /// </summary>
     /// <param name="color">Цвет заливки</param>
-    public void ExecuteFill(Color color);
+    public void ExecuteByColor(Color color);
 
     /// <summary>
     /// Остановка команды.
