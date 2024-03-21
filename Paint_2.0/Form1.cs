@@ -300,4 +300,41 @@ public partial class Form1 : Form
 
         IO.IO.Save(figureContainer, sfd.FileName, pic.Width, pic.Height);
     }
+
+    private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // очистка экрана
+    }
+
+    private void openToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // открытие файла
+    }
+
+    private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // сохранение файла
+
+    }
+
+    private void aboutUsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // открытие отдельного окна "кто где над чем работал"
+    }
+
+    // изменение тем приложения (в процессе)
+    private void customToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // что есть сейчас
+    }
+
+    private void monochromelightToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // ч/б светлый
+    }
+
+    private void monochromedarkToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // ч/б темный
+    }
 }
