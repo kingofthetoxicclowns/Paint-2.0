@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paint_2.0", "Paint_2.0\Paint_2.0.csproj", "{AEC2BE6B-AC4E-48D9-97C9-A71DA40C5AFB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paint_2.0.Tests", "Paint_2.0.Tests\Paint_2.0.Tests.csproj", "{DA523DF9-8F8E-4DEB-8EE0-8A6D8DAEA552}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paint_2._0.Tests", "Paint_2.0.Tests\Paint_2._0.Tests.csproj", "{DA523DF9-8F8E-4DEB-8EE0-8A6D8DAEA552}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AEC2BE6B-AC4E-48D9-97C9-A71DA40C5AFB} = {AEC2BE6B-AC4E-48D9-97C9-A71DA40C5AFB}
 	EndProjectSection
