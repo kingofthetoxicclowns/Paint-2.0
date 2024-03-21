@@ -366,7 +366,7 @@
             spravkaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutUsToolStripMenuItem });
             spravkaToolStripMenuItem.Name = "spravkaToolStripMenuItem";
             spravkaToolStripMenuItem.Size = new Size(60, 20);
-            spravkaToolStripMenuItem.Text = "Spravka";
+            spravkaToolStripMenuItem.Text = "Help";
             // 
             // aboutUsToolStripMenuItem
             // 
