@@ -1,8 +1,10 @@
+using CommandsLib;
+using EntitiesLib;
+using GeometryUtils;
 using Paint_2._0.Commands;
 using Paint_2._0.Entities;
 using Paint_2._0.Utilities;
-using System.Drawing;
-using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace Paint_2._0;
 
@@ -108,30 +110,30 @@ public partial class Form1 : Form
     private void pic_MouseDown(object sender, MouseEventArgs e)
     {
         if (command is Drawing)
-            command.ExecuteDraw(point);
+            command.ExecuteByOnePoint(point);
         else
         {
-            IFigure? figure = figureContainer.Select(new Point2(e.Location));
+            IFigure? figure = figureContainer.Select(e.Location);
             if (command is Filling && figure != null)
             {
                 command.Start(figure);
-                command.ExecuteFill(pen.Color);
+                command.ExecuteByColor(pen.Color);
                 command.Stop();
                 command = null;
                 graphics.Clear(Color.White);
                 foreach (IFigure figure1 in figureContainer.Figures)
                     Draw(graphics, figure1);
             }
-            else if (command is Moving)
-            {
-                command.Stop();
-                command = null;
-            }
             else if (command == null)
             {
                 command = new Moving();
                 if (figure != null)
                     command.Start(figure);
+            }
+            else if (command is Resizing && figure != null)
+            {
+                command.Start(figure);
+                command.ExecuteByTwoPoints(prevPoint, point);
             }
             if (figure != null)
                 Draw(graphics, figure);
@@ -141,17 +143,21 @@ public partial class Form1 : Form
     private void pic_MouseMove(object sender, MouseEventArgs e)
     {
         if (command is Moving && command.IsCommandStart)
-            command.ExecuteMove(prevPoint, point);
+            command.ExecuteByTwoPoints(prevPoint, point);
+        else if (command is Resizing && command.IsCommandStart)
+            command.ExecuteByTwoPoints(prevPoint, point);
 
         pic.Refresh();
     }
 
     private void pic_MouseUp(object sender, MouseEventArgs e)
     {
-        if (command is Drawing)
+        if (command != null)
         {
-            if (command.Figure is not null)
+            if (command is Drawing && command.Figure != null)
                 figureContainer.Add(command.Figure);
+            if (command.Figure != null)
+                command.Figure.IsSelect = false;
             command.Stop();
             command = null;
         }
@@ -163,13 +169,13 @@ public partial class Form1 : Form
     // трансформация
     private void btn_pencil_Click(object sender, EventArgs e)
     {
-        
+        command = new Resizing();
     }
 
     // поворот
     private void btn_eraser_Click(object sender, EventArgs e)
     {
-        
+
     }
 
     private void btn_ellipse_Click(object sender, EventArgs e)
@@ -197,25 +203,19 @@ public partial class Form1 : Form
         {
             IFigure? figure;
             if (command.Figure?.Points.Count() == 0)
-                command.ExecuteDraw(prevPoint);
+                command.ExecuteByOnePoint(prevPoint);
 
-            figure = command.ExecuteDraw(point);
+            figure = command.ExecuteByOnePoint(point);
             if (figure != null)
                 Draw(top_graphics, figure);
         }
-        if (command is Moving)
+        if (command is Moving || command is Resizing)
         {
             graphics.Clear(Color.White);
             foreach (IFigure figure in figureContainer.Figures)
                 Draw(graphics, figure);
         }
-    }
 
-    private void btn_clear_Click(object sender, EventArgs e)
-    {
-        figureContainer.Figures.Clear();
-        graphics.Clear(Color.White);
-        pic.Image = bitmap;
     }
 
     private void btn_color_Click(object sender, EventArgs e)
@@ -284,7 +284,27 @@ public partial class Form1 : Form
         command = new Filling();
     }
 
-    private void btn_save_Click(object sender, EventArgs e)
+    private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // очистка экрана
+    }
+
+    private void openToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        var ofd = new OpenFileDialog
+        {
+            Filter = IO.IO.MakeFileFilter()
+        };
+
+        if (ofd.ShowDialog() == DialogResult.Cancel)
+            return;
+
+        figureContainer = IO.IO.SVGToCanvas(ofd.FileName);
+        foreach (IFigure figure1 in figureContainer.Figures)
+            Draw(graphics, figure1);
+    }
+
+    private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
     {
         var sfd = new SaveFileDialog
         {
@@ -296,5 +316,91 @@ public partial class Form1 : Form
             return;
 
         IO.IO.Save(figureContainer, sfd.FileName, pic.Width, pic.Height);
+
+    }
+
+    private void aboutUsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // открытие отдельного окна "кто где над чем работал"
+    }
+
+    // изменение тем приложения (в процессе)
+    private void customToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // что есть сейчас
+
+        panel1.BackColor = Color.YellowGreen;
+        panel2.BackColor = Color.YellowGreen;
+        panel3.BackColor = Color.Green;
+
+        btn_color.BackColor = Color.YellowGreen;
+        btn_fill.BackColor = Color.YellowGreen;
+        btn_transform.BackColor = Color.YellowGreen;
+        btn_rotate.BackColor = Color.YellowGreen;
+        btn_ellipse.BackColor = Color.YellowGreen;
+        btn_rect.BackColor = Color.YellowGreen;
+        btn_line.BackColor = Color.YellowGreen;
+        menuStrip1.BackColor = Color.Beige;
+
+        btn_color.ForeColor = Color.Black;
+        btn_fill.ForeColor = Color.Black;
+        btn_transform.ForeColor = Color.Black;
+        btn_rotate.ForeColor = Color.Black;
+        btn_ellipse.ForeColor = Color.Black;
+        btn_rect.ForeColor = Color.Black;
+        btn_line.ForeColor = Color.Black;
+        menuStrip1.ForeColor = Color.Black;
+    }
+
+    private void monochromelightToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // ч/б светлый
+        panel1.BackColor = Color.White;
+        panel2.BackColor = Color.White;
+        panel3.BackColor = Color.LightGray;
+
+        btn_color.BackColor = Color.White;
+        btn_fill.BackColor = Color.White;
+        btn_transform.BackColor = Color.White;
+        btn_rotate.BackColor = Color.White;
+        btn_ellipse.BackColor = Color.White;
+        btn_rect.BackColor = Color.White;
+        btn_line.BackColor = Color.White;
+        menuStrip1.BackColor = Color.White;
+
+        btn_color.ForeColor = Color.Black;
+        btn_fill.ForeColor = Color.Black;
+        btn_transform.ForeColor = Color.Black;
+        btn_rotate.ForeColor = Color.Black;
+        btn_ellipse.ForeColor = Color.Black;
+        btn_rect.ForeColor = Color.Black;
+        btn_line.ForeColor = Color.Black;
+        menuStrip1.ForeColor = Color.Black;
+    }
+
+    private void monochromedarkToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // ч/б темный
+        panel1.BackColor = Color.DarkGray;
+        panel2.BackColor = Color.DarkGray;
+        panel3.BackColor = Color.Black;
+
+        btn_color.BackColor = Color.DarkGray;
+        btn_fill.BackColor = Color.DarkGray;
+        btn_transform.BackColor = Color.DarkGray;
+        btn_rotate.BackColor = Color.DarkGray;
+        btn_ellipse.BackColor = Color.DarkGray;
+        btn_rect.BackColor = Color.DarkGray;
+        btn_line.BackColor = Color.DarkGray;
+        menuStrip1.BackColor = Color.DarkGray;
+
+        btn_color.ForeColor = Color.White;
+        btn_fill.ForeColor = Color.White;
+        btn_transform.ForeColor = Color.White;
+        btn_rotate.ForeColor = Color.White;
+        btn_ellipse.ForeColor = Color.White;
+        btn_rect.ForeColor = Color.White;
+        btn_line.ForeColor = Color.White;
+        menuStrip1.ForeColor = Color.White;
     }
 }
