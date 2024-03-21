@@ -287,7 +287,27 @@ public partial class Form1 : Form
         command = new Filling();
     }
 
-    private void btn_save_Click(object sender, EventArgs e)
+    private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // очистка экрана
+    }
+
+    private void openToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        var ofd = new OpenFileDialog
+        {
+            Filter = IO.IO.MakeFileFilter()
+        };
+
+        if (ofd.ShowDialog() == DialogResult.Cancel)
+            return;
+
+        figureContainer = IO.IO.SVGToCanvas(ofd.FileName);
+        foreach (IFigure figure1 in figureContainer.Figures)
+            Draw(graphics, figure1);
+    }
+
+    private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
     {
         var sfd = new SaveFileDialog
         {
@@ -299,21 +319,6 @@ public partial class Form1 : Form
             return;
 
         IO.IO.Save(figureContainer, sfd.FileName, pic.Width, pic.Height);
-    }
-
-    private void clearToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        // очистка экрана
-    }
-
-    private void openToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        // открытие файла
-    }
-
-    private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        // сохранение файла
 
     }
 
