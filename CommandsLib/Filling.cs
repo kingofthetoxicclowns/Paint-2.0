@@ -1,7 +1,8 @@
-﻿using Paint_2._0.Entities;
-using Paint_2._0.Utilities;
+﻿using EntitiesLib;
+using GeometryUtils;
+using System.Drawing;
 
-namespace Paint_2._0.Commands;
+namespace CommandsLib;
 
 /// <summary>
 /// Команда заливки фигуры.
@@ -39,7 +40,7 @@ public class Filling : IFigureCommand
     }
 
     /// <inheritdoc/>
-    public void ExecuteFill(Color color)
+    public void ExecuteByColor(Color color)
     {
         if (figure is null)
             throw new ArgumentNullException($"Параметры не инициализованы!");
@@ -56,15 +57,15 @@ public class Filling : IFigureCommand
 
     /// <inheritdoc/>
     /// <remarks>Для команды заливки этот метод недоступен.</remarks>
-    public IFigure? ExecuteDraw(Point2 point)
+    public IFigure? ExecuteByOnePoint(Point2 point)
     {
-        throw new NotImplementedException($"Для команды перемещения этот метод недоступен!");
+        throw new NotImplementedException($"Для команды заливки этот метод недоступен!");
     }
 
     /// <inheritdoc/>
     /// <remarks>Для команды заливки этот метод недоступен.</remarks>
-    public void ExecuteMove(Point2 startPoint, Point2 point)
+    public void ExecuteByTwoPoints(Point2 startPoint, Point2 point)
     {
-        throw new NotImplementedException($"Для команды перемещения этот метод недоступен!");
+        throw new NotImplementedException($"Для команды заливки этот метод недоступен!");
     }
 }

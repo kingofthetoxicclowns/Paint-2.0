@@ -1,8 +1,6 @@
-using Paint_2._0.Commands;
-using Paint_2._0.Entities;
-using Paint_2._0.Utilities;
-using System.Drawing;
-using System.Drawing.Imaging;
+using CommandsLib;
+using EntitiesLib;
+using GeometryUtils;
 
 namespace Paint_2._0;
 
@@ -108,30 +106,30 @@ public partial class Form1 : Form
     private void pic_MouseDown(object sender, MouseEventArgs e)
     {
         if (command is Drawing)
-            command.ExecuteDraw(point);
+            command.ExecuteByOnePoint(point);
         else
         {
-            IFigure? figure = figureContainer.Select(new Point2(e.Location));
+            IFigure? figure = figureContainer.Select(e.Location);
             if (command is Filling && figure != null)
             {
                 command.Start(figure);
-                command.ExecuteFill(pen.Color);
+                command.ExecuteByColor(pen.Color);
                 command.Stop();
                 command = null;
                 graphics.Clear(Color.White);
                 foreach (IFigure figure1 in figureContainer.Figures)
                     Draw(graphics, figure1);
             }
-            else if (command is Moving)
-            {
-                command.Stop();
-                command = null;
-            }
             else if (command == null)
             {
                 command = new Moving();
                 if (figure != null)
                     command.Start(figure);
+            }
+            else if (command is Resizing && figure != null)
+            {
+                command.Start(figure);
+                command.ExecuteByTwoPoints(prevPoint, point);
             }
             if (figure != null)
                 Draw(graphics, figure);
@@ -141,17 +139,21 @@ public partial class Form1 : Form
     private void pic_MouseMove(object sender, MouseEventArgs e)
     {
         if (command is Moving && command.IsCommandStart)
-            command.ExecuteMove(prevPoint, point);
+            command.ExecuteByTwoPoints(prevPoint, point);
+        else if (command is Resizing && command.IsCommandStart)
+            command.ExecuteByTwoPoints(prevPoint, point);
 
         pic.Refresh();
     }
 
     private void pic_MouseUp(object sender, MouseEventArgs e)
     {
-        if (command is Drawing)
+        if (command != null)
         {
-            if (command.Figure is not null)
+            if (command is Drawing && command.Figure != null)
                 figureContainer.Add(command.Figure);
+            if (command.Figure != null)
+                command.Figure.IsSelect = false;
             command.Stop();
             command = null;
         }
@@ -163,13 +165,13 @@ public partial class Form1 : Form
     // трансформация
     private void btn_pencil_Click(object sender, EventArgs e)
     {
-        
+        command = new Resizing();
     }
 
     // поворот
     private void btn_eraser_Click(object sender, EventArgs e)
     {
-        
+
     }
 
     private void btn_ellipse_Click(object sender, EventArgs e)
@@ -197,18 +199,19 @@ public partial class Form1 : Form
         {
             IFigure? figure;
             if (command.Figure?.Points.Count() == 0)
-                command.ExecuteDraw(prevPoint);
+                command.ExecuteByOnePoint(prevPoint);
 
-            figure = command.ExecuteDraw(point);
+            figure = command.ExecuteByOnePoint(point);
             if (figure != null)
                 Draw(top_graphics, figure);
         }
-        if (command is Moving)
+        if (command is Moving || command is Resizing)
         {
             graphics.Clear(Color.White);
             foreach (IFigure figure in figureContainer.Figures)
                 Draw(graphics, figure);
         }
+
     }
 
     private void btn_clear_Click(object sender, EventArgs e)
@@ -296,5 +299,42 @@ public partial class Form1 : Form
             return;
 
         IO.IO.Save(figureContainer, sfd.FileName, pic.Width, pic.Height);
+    }
+
+    private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // очистка экрана
+    }
+
+    private void openToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // открытие файла
+    }
+
+    private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // сохранение файла
+
+    }
+
+    private void aboutUsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // открытие отдельного окна "кто где над чем работал"
+    }
+
+    // изменение тем приложения (в процессе)
+    private void customToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // что есть сейчас
+    }
+
+    private void monochromelightToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // ч/б светлый
+    }
+
+    private void monochromedarkToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // ч/б темный
     }
 }

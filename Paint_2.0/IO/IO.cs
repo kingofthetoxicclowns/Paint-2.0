@@ -1,10 +1,10 @@
 ﻿using System.Drawing.Imaging;
-using Paint_2._0.Entities;
-using Paint_2._0.Utilities;
 using Svg;
 using System.Xml;
 using System.Text;
 using System.Globalization;
+using EntitiesLib;
+using GeometryUtils;
 
 namespace Paint_2._0.IO
 {
