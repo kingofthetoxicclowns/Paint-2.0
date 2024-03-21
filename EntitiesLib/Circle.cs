@@ -40,8 +40,11 @@ namespace EntitiesLib
 
         public void Move(Vector2 vector)
         {
-            Points.ForEach(p
-                => p = new Point2(p.X + vector.X, p.Y + vector.Y));
+            for (int i = 0; i < Points.Count(); i++)
+            {
+                Points[i].X += vector.X;
+                Points[i].Y += vector.Y;
+            }
         }
 
         public void StrokeColorChange(Color color)

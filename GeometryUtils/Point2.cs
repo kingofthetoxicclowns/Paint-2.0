@@ -50,4 +50,11 @@ public class Point2
     {
         return new Point2(one.X + 1, one.Y + 1);
     }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is Point2 otherPoint)
+            return otherPoint.X == X && otherPoint.Y == Y;
+        return false;
+    }
 }
