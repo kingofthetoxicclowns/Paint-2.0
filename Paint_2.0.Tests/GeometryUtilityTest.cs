@@ -1,4 +1,5 @@
-using Paint_2._0.Utilities;
+using GeometryUtils;
+
 
 namespace Paint_2._0.Tests
 {

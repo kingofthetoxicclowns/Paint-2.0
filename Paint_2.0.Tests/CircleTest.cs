@@ -1,4 +1,4 @@
-using Paint_2._0.Utilities;
+using GeometryUtils;
 using System.Net;
 
 namespace Paint_2._0.Tests
