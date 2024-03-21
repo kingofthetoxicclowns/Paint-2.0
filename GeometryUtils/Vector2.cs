@@ -11,7 +11,7 @@ public class Vector2
     public float X { get; set; }
 
     /// <summary>
-    /// Координата по оси X.
+    /// Координата по оси Y.
     /// </summary>
     public float Y { get; set; }
 
@@ -31,13 +31,17 @@ public class Vector2
         X = x;
         Y = y;
     }
-
+    
     /// <summary>
     /// Нормирует вектор.
     /// </summary>
     public void Normalize()
     {
-        X /= Length;
-        Y /= Length;
+        float _length = Length;
+        if (_length != 0)
+        {
+            X /= _length;
+            Y /= _length;
+        }
     }
 }
