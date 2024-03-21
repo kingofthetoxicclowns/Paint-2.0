@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            btn_save = new Button();
-            btn_clear = new Button();
             color_picker = new PictureBox();
             btn_line = new Button();
             btn_rect = new Button();
@@ -63,8 +61,6 @@
             // panel1
             // 
             panel1.BackColor = Color.YellowGreen;
-            panel1.Controls.Add(btn_save);
-            panel1.Controls.Add(btn_clear);
             panel1.Controls.Add(color_picker);
             panel1.Controls.Add(btn_line);
             panel1.Controls.Add(btn_rect);
@@ -113,7 +109,7 @@
             panel3.Location = new Point(290, 40);
             panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(620, 90);
+            panel3.Size = new Size(510, 90);
             panel3.TabIndex = 8;
             // 
             // btn_color
@@ -248,41 +244,6 @@
             btn_line.TextAlign = ContentAlignment.BottomCenter;
             btn_line.UseVisualStyleBackColor = false;
             btn_line.Click += btn_line_Click;
-            // 
-            // btn_save
-            // 
-            btn_save.BackColor = Color.YellowGreen;
-            btn_save.Cursor = Cursors.Hand;
-            btn_save.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 192, 0);
-            btn_save.FlatAppearance.MouseOverBackColor = Color.Green;
-            btn_save.FlatStyle = FlatStyle.Flat;
-            btn_save.ForeColor = Color.White;
-            btn_save.ImageAlign = ContentAlignment.TopCenter;
-            btn_save.Location = new Point(815, 55);
-            btn_save.Margin = new Padding(3, 4, 3, 4);
-            btn_save.Name = "btn_save";
-            btn_save.Size = new Size(80, 25);
-            btn_save.TabIndex = 11;
-            btn_save.Text = "Save";
-            btn_save.UseVisualStyleBackColor = false;
-            // 
-            // btn_clear
-            // 
-            btn_clear.BackColor = Color.YellowGreen;
-            btn_clear.Cursor = Cursors.Hand;
-            btn_clear.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 192, 0);
-            btn_clear.FlatAppearance.MouseOverBackColor = Color.Green;
-            btn_clear.FlatStyle = FlatStyle.Flat;
-            btn_clear.ForeColor = Color.White;
-            btn_clear.ImageAlign = ContentAlignment.TopCenter;
-            btn_clear.Location = new Point(815, 90);
-            btn_clear.Margin = new Padding(3, 4, 3, 4);
-            btn_clear.Name = "btn_clear";
-            btn_clear.Size = new Size(80, 25);
-            btn_clear.TabIndex = 10;
-            btn_clear.Text = "Clear";
-            btn_clear.UseVisualStyleBackColor = false;
-            btn_clear.Click += btn_clear_Click;
             // 
             // pic
             // 
@@ -420,8 +381,6 @@
         private Button btn_rect;
         private Panel panel3;
         private PictureBox color_picker;
-        private Button btn_clear;
-        private Button btn_save;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem clearToolStripMenuItem;

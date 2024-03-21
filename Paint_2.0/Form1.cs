@@ -214,13 +214,6 @@ public partial class Form1 : Form
 
     }
 
-    private void btn_clear_Click(object sender, EventArgs e)
-    {
-        figureContainer.Figures.Clear();
-        graphics.Clear(Color.White);
-        pic.Image = bitmap;
-    }
-
     private void btn_color_Click(object sender, EventArgs e)
     {
         ColorDialog colorDialog = new ColorDialog();
@@ -331,15 +324,79 @@ public partial class Form1 : Form
     private void customToolStripMenuItem_Click(object sender, EventArgs e)
     {
         // что есть сейчас
+
+        panel1.BackColor = Color.YellowGreen;
+        panel2.BackColor = Color.YellowGreen;
+        panel3.BackColor = Color.Green;
+
+        btn_color.BackColor = Color.YellowGreen;
+        btn_fill.BackColor = Color.YellowGreen;
+        btn_transform.BackColor = Color.YellowGreen;
+        btn_rotate.BackColor = Color.YellowGreen;
+        btn_ellipse.BackColor = Color.YellowGreen;
+        btn_rect.BackColor = Color.YellowGreen;
+        btn_line.BackColor = Color.YellowGreen;
+        menuStrip1.BackColor = Color.Beige;
+
+        btn_color.ForeColor = Color.Black;
+        btn_fill.ForeColor = Color.Black;
+        btn_transform.ForeColor = Color.Black;
+        btn_rotate.ForeColor = Color.Black;
+        btn_ellipse.ForeColor = Color.Black;
+        btn_rect.ForeColor = Color.Black;
+        btn_line.ForeColor = Color.Black;
+        menuStrip1.ForeColor = Color.Black;
     }
 
     private void monochromelightToolStripMenuItem_Click(object sender, EventArgs e)
     {
         // ч/б светлый
+        panel1.BackColor = Color.White;
+        panel2.BackColor = Color.White;
+        panel3.BackColor = Color.LightGray;
+
+        btn_color.BackColor = Color.White;
+        btn_fill.BackColor = Color.White;
+        btn_transform.BackColor = Color.White;
+        btn_rotate.BackColor = Color.White;
+        btn_ellipse.BackColor = Color.White;
+        btn_rect.BackColor = Color.White;
+        btn_line.BackColor = Color.White;
+        menuStrip1.BackColor = Color.White;
+
+        btn_color.ForeColor = Color.Black;
+        btn_fill.ForeColor = Color.Black;
+        btn_transform.ForeColor = Color.Black;
+        btn_rotate.ForeColor = Color.Black;
+        btn_ellipse.ForeColor = Color.Black;
+        btn_rect.ForeColor = Color.Black;
+        btn_line.ForeColor = Color.Black;
+        menuStrip1.ForeColor = Color.Black;
     }
 
     private void monochromedarkToolStripMenuItem_Click(object sender, EventArgs e)
     {
         // ч/б темный
+        panel1.BackColor = Color.DarkGray;
+        panel2.BackColor = Color.DarkGray;
+        panel3.BackColor = Color.Black;
+
+        btn_color.BackColor = Color.DarkGray;
+        btn_fill.BackColor = Color.DarkGray;
+        btn_transform.BackColor = Color.DarkGray;
+        btn_rotate.BackColor = Color.DarkGray;
+        btn_ellipse.BackColor = Color.DarkGray;
+        btn_rect.BackColor = Color.DarkGray;
+        btn_line.BackColor = Color.DarkGray;
+        menuStrip1.BackColor = Color.DarkGray;
+
+        btn_color.ForeColor = Color.White;
+        btn_fill.ForeColor = Color.White;
+        btn_transform.ForeColor = Color.White;
+        btn_rotate.ForeColor = Color.White;
+        btn_ellipse.ForeColor = Color.White;
+        btn_rect.ForeColor = Color.White;
+        btn_line.ForeColor = Color.White;
+        menuStrip1.ForeColor = Color.White;
     }
 }
