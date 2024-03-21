@@ -72,7 +72,7 @@ namespace Paint_2._0.IO
         /// </summary>
         /// <param name="container">Контейнер фигур.</param>
         /// <param name="filePath">Путь сохранения SVG-файла.</param>
-        public static int CanvasToSVG(FigureContainer container, string filePath)
+        private static int CanvasToSVG(FigureContainer container, string filePath)
         {
             XmlDocument doc = new();
             XmlElement svgElement = doc.CreateElement("svg");
@@ -97,7 +97,7 @@ namespace Paint_2._0.IO
                     figureElement = CreateSquareElement(doc, square);
                 }
 
-                if (figureElement != null)
+                if (figureElement is not null)
                 {
                     svgElement.AppendChild(figureElement);
                 }
@@ -107,9 +107,9 @@ namespace Paint_2._0.IO
             doc.Save(filePath);
             return 0;
         }
-        private static string ColorToRGBA(System.Drawing.Color color)
+        private static string ColorToRGBA(Color color)
         {
-            return string.Format($"rgba({color.R.ToString()},{color.G.ToString()},{color.B.ToString()},{color.A.ToString()}");
+            return string.Format($"rgba({color.R},{color.G},{color.B},{color.A}");
         }
         private static XmlElement CreateCircleElement(XmlDocument doc, Circle circle)
         {
@@ -119,7 +119,7 @@ namespace Paint_2._0.IO
             circleElement.SetAttribute("r", circle.Radius.ToString("0.0", CultureInfo.InvariantCulture));
             circleElement.SetAttribute("stroke", ColorToRGBA(circle.StrokeColor));
             circleElement.SetAttribute("stroke-width", circle.StrokeThickness.ToString());
-            if (circle.FillColor != null)
+            if (circle.FillColor is not null)
             {
                 circleElement.SetAttribute("fill", ColorToRGBA(circle.FillColor.Value));
             }
@@ -155,7 +155,7 @@ namespace Paint_2._0.IO
             polygonElement.SetAttribute("points", points.ToString().Trim());
             polygonElement.SetAttribute("stroke", ColorToRGBA(square.StrokeColor));
             polygonElement.SetAttribute("stroke-width", square.StrokeThickness.ToString());
-            if (square.FillColor != null)
+            if (square.FillColor is not null)
             {
                 polygonElement.SetAttribute("fill", ColorToRGBA(square.FillColor.Value));
             }
@@ -169,7 +169,7 @@ namespace Paint_2._0.IO
         /// <summary>
         /// Перевод SVG-файла в указанный растровый формат.
         /// </summary>
-        public static void SVGToBitmapFormat(string svgPath, string outputPath, int width, int height)
+        private static void SVGToBitmapFormat(string svgPath, string outputPath, int width, int height)
         {
             Bitmap bitmap;
             SvgDocument svgDoc;
@@ -205,15 +205,18 @@ namespace Paint_2._0.IO
         /// <summary>
         /// Перевод SVG-файла в контейнер фигур.
         /// </summary>
+        /// <param name="filePath">Путь загрузки SVG-файла.</param>
+        /// <returns>Экземпляр класса FigureContainer</returns>
         #region SVG to FigureContainer
         public static FigureContainer SVGToCanvas(string filePath)
         {
-            FigureContainer container = new FigureContainer();
+            FigureContainer container = new();
 
-            XmlDocument doc = new XmlDocument();
+            XmlDocument doc = new();
             doc.Load(filePath);
 
-            XmlNodeList figureNodes = doc.SelectNodes("//*[local-name()='svg']/*");
+            XmlNodeList figureNodes = doc.SelectNodes("//*[local-name()='svg']/*") ??
+                throw new Exception("Ошибка получения контейнера фигур");
 
             foreach (XmlNode figureNode in figureNodes)
             {
@@ -231,7 +234,7 @@ namespace Paint_2._0.IO
                         figure = CreateSquareFromXmlNode(figureNode);
                         break;
                 }
-                if (figure != null)
+                if (figure is not null)
                 {
                     container.Add(figure);
                 }
@@ -246,28 +249,27 @@ namespace Paint_2._0.IO
             float r = float.Parse(node.Attributes["r"].Value, CultureInfo.InvariantCulture);
 
             Color strokeColor = Color.Black; // Цвет обводки по умолчанию
-            if (node.Attributes["stroke"] != null)
+            if (node.Attributes["stroke"] is not null)
             {
                 strokeColor = ParseColor(node.Attributes["stroke"].Value);
             }
 
             int strokeThickness = 1; // Толщина обводки по умолчанию
-            if (node.Attributes["stroke-width"] != null)
+            if (node.Attributes["stroke-width"] is not null)
             {
                 strokeThickness = int.Parse(node.Attributes["stroke-width"].Value);
             }
 
             Color? fillColor = null;
-            if (node.Attributes["fill"] != null & node.Attributes["fill"].Value != "none")
+            if (node.Attributes["fill"] is not null & node.Attributes["fill"].Value != "none")
             {
                 fillColor = ParseColor(node.Attributes["fill"].Value);
             }
 
-
-            Circle circle = new Circle();
+            Circle circle = new();
             circle.Create(new Point2(cx, cy), new Point2(cx + r, cy), strokeColor);
             circle.StrokeThicknessChange(strokeThickness);
-            if (fillColor != null)
+            if (fillColor is not null)
             {
                 circle.Fill(fillColor.Value);
             }
@@ -292,19 +294,19 @@ namespace Paint_2._0.IO
             float y2 = float.Parse(node.Attributes["y2"].Value);
 
             Color strokeColor = Color.Black; // Цвет обводки по умолчанию
-            if (node.Attributes["stroke"] != null)
+            if (node.Attributes["stroke"] is not null)
             {
                 strokeColor = ParseColor(node.Attributes["stroke"].Value);
             }
 
             int strokeThickness = 1; // Толщина обводки по умолчанию
-            if (node.Attributes["stroke-width"] != null)
+            if (node.Attributes["stroke-width"] is not null)
             {
                 strokeThickness = int.Parse(node.Attributes["stroke-width"].Value);
             }
 
 
-            Line line = new Line();
+            Line line = new();
             line.Create(new Point2(x1, y1), new Point2(x2, y2), strokeColor);
             line.StrokeThicknessChange(strokeThickness);
             return line;
@@ -319,7 +321,7 @@ namespace Paint_2._0.IO
                 return null;
             }
 
-            List<Point2> points = new List<Point2>();
+            List<Point2> points = [];
             foreach (string pointCoord in pointCoords)
             {
                 string[] xy = pointCoord.Split(',');
@@ -335,24 +337,24 @@ namespace Paint_2._0.IO
             }
 
             Color strokeColor = Color.Black; // Цвет обводки по умолчанию
-            if (node.Attributes["stroke"] != null)
+            if (node.Attributes["stroke"] is not null)
             {
                 strokeColor = ParseColor(node.Attributes["stroke"].Value);
             }
 
             int strokeThickness = 1; // Толщина обводки по умолчанию
-            if (node.Attributes["stroke-width"] != null)
+            if (node.Attributes["stroke-width"] is not null)
             {
                 strokeThickness = int.Parse(node.Attributes["stroke-width"].Value);
             }
 
             Color? fillColor = null;
-            if (node.Attributes["fill"] != null & node.Attributes["fill"].Value != "none")
+            if (node.Attributes["fill"] is not null & node.Attributes["fill"].Value != "none")
             {
                 fillColor = ParseColor(node.Attributes["fill"].Value);
             }
 
-            Square square = new Square();
+            Square square = new();
             // Чтобы не лежали на одной прямой
             if (points[0].X != points[1].X & points[0].Y != points[1].Y)
             {
@@ -367,7 +369,7 @@ namespace Paint_2._0.IO
                 square.Create(points[0], points[3], strokeColor);
             }
             square.StrokeThicknessChange(strokeThickness);
-            if (fillColor != null)
+            if (fillColor is not null)
             {
                 square.Fill(fillColor.Value);
             }
@@ -377,7 +379,7 @@ namespace Paint_2._0.IO
         private static bool IsSquare(List<Point2> points)
         {
             // попарные квадраты расстояния между точек
-            List<float> s = new List<float>() { 0, 0, 0, 0, 0, 0 };
+            List<float> s = [0, 0, 0, 0, 0, 0];
 
             // Находим расстояния между точек попарно
             s[0] = Convert.ToSingle(Math.Pow(points[0].X - points[1].X, 2) +
@@ -427,12 +429,7 @@ namespace Paint_2._0.IO
                         eq_flag = false;
                 }
 
-            if (!eq_flag)
-            {
-                return false;
-            }
-
-            return true;
+            return eq_flag;
         }
         #endregion
     }
