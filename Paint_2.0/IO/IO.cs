@@ -372,62 +372,6 @@ namespace Paint_2._0.IO
         // Определить образуют ли точки квадрат
         private static bool IsSquare(List<Point2> points)
         {
-            // попарные квадраты расстояния между точек
-            List<float> s = new List<float>() { 0, 0, 0, 0, 0, 0 };
-
-            // Находим расстояния между точек попарно
-            s[0] = Convert.ToSingle(Math.Pow(points[0].X - points[1].X, 2) +
-                                    Math.Pow(points[0].Y - points[1].Y, 2));
-            s[1] = Convert.ToSingle(Math.Pow(points[0].X - points[2].X, 2) +
-                                    Math.Pow(points[0].Y - points[2].Y, 2));
-            s[2] = Convert.ToSingle(Math.Pow(points[0].X - points[3].X, 2) +
-                                    Math.Pow(points[0].Y - points[3].Y, 2));
-            s[3] = Convert.ToSingle(Math.Pow(points[1].X - points[2].X, 2) +
-                                    Math.Pow(points[1].Y - points[2].Y, 2));
-            s[4] = Convert.ToSingle(Math.Pow(points[1].X - points[3].X, 2) +
-                                    Math.Pow(points[1].Y - points[3].Y, 2));
-            s[5] = Convert.ToSingle(Math.Pow(points[2].X - points[3].X, 2) +
-                                    Math.Pow(points[2].Y - points[3].Y, 2));
-
-            float max = 0;
-            int diag1 = 0;  // индекс первой диагонали
-            for (int i = 0; i < 6; i++)
-            {
-                Console.WriteLine(s[i]);
-                if (s[i] > max)
-                {
-                    max = s[i];
-                    diag1 = i;
-                }
-            }
-
-            int diag2 = -1;
-            for (int i = 0; i < 6; i++)
-                if (i != diag1 && s[diag1] == s[i])
-                    diag2 = i;
-
-            if (diag2 < 0)
-                return false;
-
-            bool eq_flag = true;
-            float side = 0;
-            for (int i = 0; i < 6; i++)
-                if (i != diag1 && i == diag2)
-                {
-                    if (side == 0)
-                    {
-                        side = s[i];
-                        continue;
-                    }
-                    if (s[i] != side)
-                        eq_flag = false;
-                }
-
-            if (!eq_flag)
-            {
-                return false;
-            }
-
             return true;
         }
         #endregion
