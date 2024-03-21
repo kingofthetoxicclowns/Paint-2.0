@@ -179,6 +179,18 @@ namespace Paint_2._0.Tests.Geometry
             var expectedResult = new Point2(1, 1);
             var actualResult = GeometryUtility.StraightLinesIntersection(a, b, c, d);
             Assert.AreEqual(expectedResult.X, actualResult.X);
+            //Assert.AreEqual(expectedResult.Y, actualResult.Y);
+        }
+        [TestMethod]
+        public void StraightLinesIntersection_ab_is_Horizontal_cd_has_slopeY()
+        {
+            var a = new Point2(-3, 1);
+            var b = new Point2(3, 1);
+            var c = new Point2(2, 0); //y=2-x
+            var d = new Point2(0, 2);
+            var expectedResult = new Point2(1, 1);
+            var actualResult = GeometryUtility.StraightLinesIntersection(a, b, c, d);
+            //Assert.AreEqual(expectedResult.X, actualResult.X);
             Assert.AreEqual(expectedResult.Y, actualResult.Y);
         }
         [TestMethod]
