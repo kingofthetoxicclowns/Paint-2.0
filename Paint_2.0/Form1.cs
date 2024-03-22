@@ -327,80 +327,143 @@ public partial class Form1 : Form
     // изменение тем приложения (в процессе)
     private void customToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        // что есть сейчас
-
         panel1.BackColor = Color.YellowGreen;
         panel2.BackColor = Color.YellowGreen;
         panel3.BackColor = Color.Green;
 
-        btn_color.BackColor = Color.YellowGreen;
-        btn_fill.BackColor = Color.YellowGreen;
-        btn_transform.BackColor = Color.YellowGreen;
-        btn_rotate.BackColor = Color.YellowGreen;
-        btn_ellipse.BackColor = Color.YellowGreen;
-        btn_rect.BackColor = Color.YellowGreen;
-        btn_line.BackColor = Color.YellowGreen;
         menuStrip1.BackColor = Color.Beige;
-
-        btn_color.ForeColor = Color.Black;
-        btn_fill.ForeColor = Color.Black;
-        btn_transform.ForeColor = Color.Black;
-        btn_rotate.ForeColor = Color.Black;
-        btn_ellipse.ForeColor = Color.Black;
-        btn_rect.ForeColor = Color.Black;
-        btn_line.ForeColor = Color.Black;
         menuStrip1.ForeColor = Color.Black;
+
+        btn_color.BackColor = Color.YellowGreen;
+        btn_color.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 192, 0);
+        btn_color.FlatAppearance.MouseOverBackColor = Color.Green;
+        btn_color.ForeColor = Color.White;
+        btn_color.ForeColor = Color.Black;
+
+        btn_fill.BackColor = Color.YellowGreen;
+        btn_fill.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 192, 0);
+        btn_fill.FlatAppearance.MouseOverBackColor = Color.Green;
+        btn_fill.ForeColor = Color.White;
+        btn_fill.ForeColor = Color.Black;
+
+        btn_transform.BackColor = Color.YellowGreen;
+        btn_transform.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 192, 0);
+        btn_transform.FlatAppearance.MouseOverBackColor = Color.Green;
+        btn_transform.ForeColor = Color.White;
+        btn_transform.ForeColor = Color.Black;
+
+        btn_rotate.BackColor = Color.YellowGreen;
+        btn_rotate.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 192, 0);
+        btn_rotate.FlatAppearance.MouseOverBackColor = Color.Green;
+        btn_rotate.ForeColor = Color.White;
+        btn_rotate.ForeColor = Color.Black;
+
+        btn_ellipse.BackColor = Color.YellowGreen;
+        btn_ellipse.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 192, 0);
+        btn_ellipse.FlatAppearance.MouseOverBackColor = Color.Green;
+        btn_ellipse.ForeColor = Color.White;
+        btn_ellipse.ForeColor = Color.Black;
+
+        btn_rect.BackColor = Color.YellowGreen;
+        btn_rect.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 192, 0);
+        btn_rect.FlatAppearance.MouseOverBackColor = Color.Green;
+        btn_rect.ForeColor = Color.White;
+        btn_rect.ForeColor = Color.Black;
+
+        btn_line.BackColor = Color.YellowGreen;
+        btn_line.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 192, 0);
+        btn_line.FlatAppearance.MouseOverBackColor = Color.Green;
+        btn_line.ForeColor = Color.White;
+        btn_line.ForeColor = Color.Black;
     }
 
     private void monochromelightToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        // ч/б светлый
         panel1.BackColor = Color.White;
         panel2.BackColor = Color.White;
         panel3.BackColor = Color.LightGray;
+
         menuStrip1.BackColor = Color.LightGray;
+        menuStrip1.ForeColor = Color.Black;
 
         btn_color.BackColor = Color.White;
-        btn_fill.BackColor = Color.White;
-        btn_transform.BackColor = Color.White;
-        btn_rotate.BackColor = Color.White;
-        btn_ellipse.BackColor = Color.White;
-        btn_rect.BackColor = Color.White;
-        btn_line.BackColor = Color.White;
+        btn_color.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
+        btn_color.FlatAppearance.MouseOverBackColor = Color.Gray;
+        btn_color.ForeColor = Color.White;
 
-        btn_color.ForeColor = Color.Black;
-        btn_fill.ForeColor = Color.Black;
-        btn_transform.ForeColor = Color.Black;
-        btn_rotate.ForeColor = Color.Black;
-        btn_ellipse.ForeColor = Color.Black;
-        btn_rect.ForeColor = Color.Black;
-        btn_line.ForeColor = Color.Black;
-        menuStrip1.ForeColor = Color.Black;
+        btn_fill.BackColor = Color.White;
+        btn_fill.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
+        btn_fill.FlatAppearance.MouseOverBackColor = Color.Gray;
+        btn_fill.ForeColor = Color.White;
+
+        btn_transform.BackColor = Color.White;
+        btn_transform.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
+        btn_transform.FlatAppearance.MouseOverBackColor = Color.Gray;
+        btn_transform.ForeColor = Color.White;
+
+        btn_rotate.BackColor = Color.White;
+        btn_rotate.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
+        btn_rotate.FlatAppearance.MouseOverBackColor = Color.Gray;
+        btn_rotate.ForeColor = Color.White;
+
+        btn_ellipse.BackColor = Color.White;
+        btn_ellipse.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
+        btn_ellipse.FlatAppearance.MouseOverBackColor = Color.Gray;
+        btn_ellipse.ForeColor = Color.White;
+
+        btn_rect.BackColor = Color.White;
+        btn_rect.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
+        btn_rect.FlatAppearance.MouseOverBackColor = Color.Gray;
+        btn_rect.ForeColor = Color.White;
+
+        btn_line.BackColor = Color.White;
+        btn_line.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
+        btn_line.FlatAppearance.MouseOverBackColor = Color.Gray;
+        btn_line.ForeColor = Color.White;
     }
 
     private void monochromedarkToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        // ч/б темный
         panel1.BackColor = Color.DarkGray;
         panel2.BackColor = Color.DarkGray;
         panel3.BackColor = Color.Black;
+
         menuStrip1.BackColor = Color.Black;
+        menuStrip1.ForeColor = Color.LightGray;
 
         btn_color.BackColor = Color.DarkGray;
-        btn_fill.BackColor = Color.DarkGray;
-        btn_transform.BackColor = Color.DarkGray;
-        btn_rotate.BackColor = Color.DarkGray;
-        btn_ellipse.BackColor = Color.DarkGray;
-        btn_rect.BackColor = Color.DarkGray;
-        btn_line.BackColor = Color.DarkGray;
-
+        btn_color.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
+        btn_color.FlatAppearance.MouseOverBackColor = Color.Gray;
         btn_color.ForeColor = Color.White;
+
+        btn_fill.BackColor = Color.DarkGray;
+        btn_fill.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
+        btn_fill.FlatAppearance.MouseOverBackColor = Color.Gray;
         btn_fill.ForeColor = Color.White;
+
+        btn_transform.BackColor = Color.DarkGray;
+        btn_transform.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
+        btn_transform.FlatAppearance.MouseOverBackColor = Color.Gray;
         btn_transform.ForeColor = Color.White;
+
+        btn_rotate.BackColor = Color.DarkGray;
+        btn_rotate.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
+        btn_rotate.FlatAppearance.MouseOverBackColor = Color.Gray;
         btn_rotate.ForeColor = Color.White;
+
+        btn_ellipse.BackColor = Color.DarkGray;
+        btn_ellipse.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
+        btn_ellipse.FlatAppearance.MouseOverBackColor = Color.Gray;
         btn_ellipse.ForeColor = Color.White;
+
+        btn_rect.BackColor = Color.DarkGray;
+        btn_rect.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
+        btn_rect.FlatAppearance.MouseOverBackColor = Color.Gray;
         btn_rect.ForeColor = Color.White;
+
+        btn_line.BackColor = Color.DarkGray;
+        btn_line.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
+        btn_line.FlatAppearance.MouseOverBackColor = Color.Gray;
         btn_line.ForeColor = Color.White;
-        menuStrip1.ForeColor = Color.White;
     }
 }
