@@ -404,3 +404,4 @@ public partial class Form1 : Form
         menuStrip1.ForeColor = Color.White;
     }
 }
+
