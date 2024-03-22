@@ -389,37 +389,37 @@ public partial class Form1 : Form
         btn_color.BackColor = Color.White;
         btn_color.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
         btn_color.FlatAppearance.MouseOverBackColor = Color.Gray;
-        btn_color.ForeColor = Color.White;
+        btn_color.ForeColor = Color.Black;
 
         btn_fill.BackColor = Color.White;
         btn_fill.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
         btn_fill.FlatAppearance.MouseOverBackColor = Color.Gray;
-        btn_fill.ForeColor = Color.White;
+        btn_fill.ForeColor = Color.Black;
 
         btn_transform.BackColor = Color.White;
         btn_transform.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
         btn_transform.FlatAppearance.MouseOverBackColor = Color.Gray;
-        btn_transform.ForeColor = Color.White;
+        btn_transform.ForeColor = Color.Black;
 
         btn_rotate.BackColor = Color.White;
         btn_rotate.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
         btn_rotate.FlatAppearance.MouseOverBackColor = Color.Gray;
-        btn_rotate.ForeColor = Color.White;
+        btn_rotate.ForeColor = Color.Black;
 
         btn_ellipse.BackColor = Color.White;
         btn_ellipse.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
         btn_ellipse.FlatAppearance.MouseOverBackColor = Color.Gray;
-        btn_ellipse.ForeColor = Color.White;
+        btn_ellipse.ForeColor = Color.Black;
 
         btn_rect.BackColor = Color.White;
         btn_rect.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
         btn_rect.FlatAppearance.MouseOverBackColor = Color.Gray;
-        btn_rect.ForeColor = Color.White;
+        btn_rect.ForeColor = Color.Black;
 
         btn_line.BackColor = Color.White;
         btn_line.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 245, 245);
         btn_line.FlatAppearance.MouseOverBackColor = Color.Gray;
-        btn_line.ForeColor = Color.White;
+        btn_line.ForeColor = Color.Black;
     }
 
     private void monochromedarkToolStripMenuItem_Click(object sender, EventArgs e)
