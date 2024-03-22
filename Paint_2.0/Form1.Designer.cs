@@ -313,18 +313,21 @@
             customToolStripMenuItem.Name = "customToolStripMenuItem";
             customToolStripMenuItem.Size = new Size(180, 22);
             customToolStripMenuItem.Text = "Custom";
+            customToolStripMenuItem.Click += customToolStripMenuItem_Click;
             // 
             // monochromelightToolStripMenuItem
             // 
             monochromelightToolStripMenuItem.Name = "monochromelightToolStripMenuItem";
             monochromelightToolStripMenuItem.Size = new Size(180, 22);
             monochromelightToolStripMenuItem.Text = "Monochrome_light";
+            monochromelightToolStripMenuItem.Click += monochromelightToolStripMenuItem_Click;
             // 
             // monochromedarkToolStripMenuItem
             // 
             monochromedarkToolStripMenuItem.Name = "monochromedarkToolStripMenuItem";
             monochromedarkToolStripMenuItem.Size = new Size(180, 22);
             monochromedarkToolStripMenuItem.Text = "Monochrome_dark";
+            monochromedarkToolStripMenuItem.Click += monochromedarkToolStripMenuItem_Click;
             // 
             // spravkaToolStripMenuItem
             // 
