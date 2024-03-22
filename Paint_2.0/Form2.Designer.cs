@@ -59,7 +59,7 @@
             groupBox1.Size = new Size(248, 81);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "IO";
+            groupBox1.Text = "Geometry";
             // 
             // label1
             // 
@@ -100,7 +100,7 @@
             groupBox2.Size = new Size(248, 81);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Geometry";
+            groupBox2.Text = "IO";
             // 
             // label3
             // 
