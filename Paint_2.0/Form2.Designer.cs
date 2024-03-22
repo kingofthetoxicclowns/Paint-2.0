@@ -72,7 +72,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(254, 401);
+            button1.Location = new Point(254, 386);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 1;
@@ -170,9 +170,9 @@
             label6.AutoSize = true;
             label6.Location = new Point(6, 21);
             label6.Name = "label6";
-            label6.Size = new Size(230, 51);
+            label6.Size = new Size(226, 51);
             label6.TabIndex = 0;
-            label6.Text = "1. Василенко Алина - aloooxnj\n2. Доржиева Сэмжид - DzhSmd\n3. Галиулина Татьяна - galiulinatanya ";
+            label6.Text = "1. Василенко Алина - aloooxnj/Alina\n2. Доржиева Сэмжид - DzhSmd\n3. Галиулина Татьяна - galiulinatanya";
             // 
             // label7
             // 
@@ -189,16 +189,16 @@
             label8.AutoSize = true;
             label8.Location = new Point(12, 362);
             label8.Name = "label8";
-            label8.Size = new Size(469, 30);
+            label8.Size = new Size(332, 15);
             label8.TabIndex = 5;
-            label8.Text = "Приготовлено в качестве работы за семестр. Прав нету (или есть?) не разбираюсь. \nИ, если честно, без разницы.";
+            label8.Text = "Сделано в качестве работы за весенний семестр 2024 года.";
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoValidate = AutoValidate.EnableAllowFocusChange;
-            ClientSize = new Size(568, 434);
+            ClientSize = new Size(568, 419);
             ControlBox = false;
             Controls.Add(label8);
             Controls.Add(label7);
