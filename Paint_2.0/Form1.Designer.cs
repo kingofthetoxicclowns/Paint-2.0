@@ -109,7 +109,7 @@
             panel3.Location = new Point(290, 40);
             panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(510, 90);
+            panel3.Size = new Size(440, 90);
             panel3.TabIndex = 8;
             // 
             // btn_color
@@ -141,7 +141,7 @@
             btn_fill.ForeColor = Color.White;
             btn_fill.BackgroundImage = Properties.Resources.fill;
             btn_fill.BackgroundImageLayout = ImageLayout.Zoom;
-            btn_fill.Location = new Point(395, 55);
+            btn_fill.Location = new Point(375, 55);
             btn_fill.Margin = new Padding(3, 4, 3, 4);
             btn_fill.Name = "btn_fill";
             btn_fill.Size = new Size(60, 60);
@@ -160,10 +160,10 @@
             btn_transform.ForeColor = Color.White;
             btn_transform.BackgroundImage = Properties.Resources.transform;
             btn_transform.BackgroundImageLayout = ImageLayout.Zoom;
-            btn_transform.Location = new Point(485, 50);
+            btn_transform.Location = new Point(445, 55);
             btn_transform.Margin = new Padding(3, 4, 3, 4);
             btn_transform.Name = "btn_transform";
-            btn_transform.Size = new Size(30, 30);
+            btn_transform.Size = new Size(60, 60);
             btn_transform.TabIndex = 3;
             btn_transform.TextAlign = ContentAlignment.BottomCenter;
             btn_transform.UseVisualStyleBackColor = false;
@@ -179,7 +179,7 @@
             btn_rotate.ForeColor = Color.White;
             btn_rotate.BackgroundImage = Properties.Resources.rotation;
             btn_rotate.BackgroundImageLayout = ImageLayout.Zoom;
-            btn_rotate.Location = new Point(485, 90);
+            btn_rotate.Location = new Point(445, 90);
             btn_rotate.Margin = new Padding(3, 4, 3, 4);
             btn_rotate.Name = "btn_rotate";
             btn_rotate.Size = new Size(30, 30);
@@ -187,6 +187,7 @@
             btn_rotate.TextAlign = ContentAlignment.BottomCenter;
             btn_rotate.UseVisualStyleBackColor = false;
             btn_rotate.Click += btn_eraser_Click;
+            btn_rotate.Visible = false;
             // 
             // btn_ellipse
             // 
@@ -198,7 +199,7 @@
             btn_ellipse.ForeColor = Color.White;
             btn_ellipse.BackgroundImage = Properties.Resources.circle1;
             btn_ellipse.BackgroundImageLayout = ImageLayout.Zoom;
-            btn_ellipse.Location = new Point(545, 55);
+            btn_ellipse.Location = new Point(515, 55);
             btn_ellipse.Margin = new Padding(3, 4, 3, 4);
             btn_ellipse.Name = "btn_ellipse";
             btn_ellipse.Size = new Size(60, 60);
@@ -217,7 +218,7 @@
             btn_rect.ForeColor = Color.White;
             btn_rect.BackgroundImage = Properties.Resources.rect;
             btn_rect.BackgroundImageLayout = ImageLayout.Zoom;
-            btn_rect.Location = new Point(635, 55);
+            btn_rect.Location = new Point(585, 55);
             btn_rect.Margin = new Padding(3, 4, 3, 4);
             btn_rect.Name = "btn_rect";
             btn_rect.Size = new Size(60, 60);
@@ -236,7 +237,7 @@
             btn_line.ForeColor = Color.White;
             btn_line.BackgroundImage = Properties.Resources.line1;
             btn_line.BackgroundImageLayout = ImageLayout.Zoom;
-            btn_line.Location = new Point(725, 55);
+            btn_line.Location = new Point(655, 55);
             btn_line.Margin = new Padding(3, 4, 3, 4);
             btn_line.Name = "btn_line";
             btn_line.Size = new Size(60, 60);
@@ -319,14 +320,14 @@
             // 
             monochromelightToolStripMenuItem.Name = "monochromelightToolStripMenuItem";
             monochromelightToolStripMenuItem.Size = new Size(180, 22);
-            monochromelightToolStripMenuItem.Text = "Monochrome_light";
+            monochromelightToolStripMenuItem.Text = "Monochrome (light)";
             monochromelightToolStripMenuItem.Click += monochromelightToolStripMenuItem_Click;
             // 
             // monochromedarkToolStripMenuItem
             // 
             monochromedarkToolStripMenuItem.Name = "monochromedarkToolStripMenuItem";
             monochromedarkToolStripMenuItem.Size = new Size(180, 22);
-            monochromedarkToolStripMenuItem.Text = "Monochrome_dark";
+            monochromedarkToolStripMenuItem.Text = "Monochrome (dark)";
             monochromedarkToolStripMenuItem.Click += monochromedarkToolStripMenuItem_Click;
             // 
             // spravkaToolStripMenuItem
@@ -341,6 +342,7 @@
             aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
             aboutUsToolStripMenuItem.Size = new Size(180, 22);
             aboutUsToolStripMenuItem.Text = "About us";
+            aboutUsToolStripMenuItem.Click += aboutUsToolStripMenuItem_Click;
             //
             // panel2
             // 
