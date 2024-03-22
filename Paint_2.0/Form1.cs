@@ -1,10 +1,6 @@
 using CommandsLib;
 using EntitiesLib;
 using GeometryUtils;
-using Paint_2._0.Commands;
-using Paint_2._0.Entities;
-using Paint_2._0.Utilities;
-using System.Windows.Forms;
 
 namespace Paint_2._0;
 
@@ -404,4 +400,3 @@ public partial class Form1 : Form
         menuStrip1.ForeColor = Color.White;
     }
 }
-
