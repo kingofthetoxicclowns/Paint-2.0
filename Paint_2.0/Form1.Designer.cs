@@ -285,6 +285,7 @@
             clearToolStripMenuItem.Name = "clearToolStripMenuItem";
             clearToolStripMenuItem.Size = new Size(180, 22);
             clearToolStripMenuItem.Text = "Clear";
+            clearToolStripMenuItem.Click += clearToolStripMenuItem_Click;
             // 
             // openToolStripMenuItem
             // 
@@ -312,18 +313,21 @@
             customToolStripMenuItem.Name = "customToolStripMenuItem";
             customToolStripMenuItem.Size = new Size(180, 22);
             customToolStripMenuItem.Text = "Custom";
+            customToolStripMenuItem.Click += customToolStripMenuItem_Click;
             // 
             // monochromelightToolStripMenuItem
             // 
             monochromelightToolStripMenuItem.Name = "monochromelightToolStripMenuItem";
             monochromelightToolStripMenuItem.Size = new Size(180, 22);
-            monochromelightToolStripMenuItem.Text = "Monochrome_light";
+            monochromelightToolStripMenuItem.Text = "Monochrome (light)";
+            monochromelightToolStripMenuItem.Click += monochromelightToolStripMenuItem_Click;
             // 
             // monochromedarkToolStripMenuItem
             // 
             monochromedarkToolStripMenuItem.Name = "monochromedarkToolStripMenuItem";
             monochromedarkToolStripMenuItem.Size = new Size(180, 22);
-            monochromedarkToolStripMenuItem.Text = "Monochrome_dark";
+            monochromedarkToolStripMenuItem.Text = "Monochrome (dark)";
+            monochromedarkToolStripMenuItem.Click += monochromedarkToolStripMenuItem_Click;
             // 
             // spravkaToolStripMenuItem
             // 
@@ -337,6 +341,7 @@
             aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
             aboutUsToolStripMenuItem.Size = new Size(180, 22);
             aboutUsToolStripMenuItem.Text = "About us";
+            aboutUsToolStripMenuItem.Click += aboutUsToolStripMenuItem_Click;
             //
             // panel2
             // 

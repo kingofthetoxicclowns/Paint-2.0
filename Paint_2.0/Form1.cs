@@ -320,7 +320,6 @@ public partial class Form1 : Form
 
     private void aboutUsToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        // открытие отдельного окна "кто где над чем работал"
         Form2 credits = new Form2();
         credits.Show();
     }
@@ -359,6 +358,7 @@ public partial class Form1 : Form
         panel1.BackColor = Color.White;
         panel2.BackColor = Color.White;
         panel3.BackColor = Color.LightGray;
+        menuStrip1.BackColor = Color.LightGray;
 
         btn_color.BackColor = Color.White;
         btn_fill.BackColor = Color.White;
@@ -367,7 +367,6 @@ public partial class Form1 : Form
         btn_ellipse.BackColor = Color.White;
         btn_rect.BackColor = Color.White;
         btn_line.BackColor = Color.White;
-        menuStrip1.BackColor = Color.White;
 
         btn_color.ForeColor = Color.Black;
         btn_fill.ForeColor = Color.Black;
@@ -385,6 +384,7 @@ public partial class Form1 : Form
         panel1.BackColor = Color.DarkGray;
         panel2.BackColor = Color.DarkGray;
         panel3.BackColor = Color.Black;
+        menuStrip1.BackColor = Color.Black;
 
         btn_color.BackColor = Color.DarkGray;
         btn_fill.BackColor = Color.DarkGray;
@@ -393,7 +393,6 @@ public partial class Form1 : Form
         btn_ellipse.BackColor = Color.DarkGray;
         btn_rect.BackColor = Color.DarkGray;
         btn_line.BackColor = Color.DarkGray;
-        menuStrip1.BackColor = Color.DarkGray;
 
         btn_color.ForeColor = Color.White;
         btn_fill.ForeColor = Color.White;

@@ -211,7 +211,7 @@
             Controls.Add(groupBox1);
             Name = "Form2";
             ShowIcon = false;
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "About us - Paint-2.0";
             TopMost = true;
             groupBox1.ResumeLayout(false);
