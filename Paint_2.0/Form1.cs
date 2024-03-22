@@ -283,6 +283,9 @@ public partial class Form1 : Form
     private void clearToolStripMenuItem_Click(object sender, EventArgs e)
     {
         // очистка экрана
+        figureContainer.Figures.Clear();
+        graphics.Clear(Color.White);
+        pic.Image = bitmap;
     }
 
     private void openToolStripMenuItem_Click(object sender, EventArgs e)
