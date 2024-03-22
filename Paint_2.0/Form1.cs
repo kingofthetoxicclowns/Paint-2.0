@@ -283,6 +283,9 @@ public partial class Form1 : Form
     private void clearToolStripMenuItem_Click(object sender, EventArgs e)
     {
         // очистка экрана
+        figureContainer.Figures.Clear();
+        graphics.Clear(Color.White);
+        pic.Image = bitmap;
     }
 
     private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -318,6 +321,8 @@ public partial class Form1 : Form
     private void aboutUsToolStripMenuItem_Click(object sender, EventArgs e)
     {
         // открытие отдельного окна "кто где над чем работал"
+        Form2 credits = new Form2();
+        credits.Show();
     }
 
     // изменение тем приложения (в процессе)
